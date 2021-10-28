@@ -1,5 +1,3 @@
-# eyond-os-06-group-1
-
 This is *GROUP1s project for the "Open Source Code Workshop" course in Reichman University.
 
 Our projects objectives are the following
