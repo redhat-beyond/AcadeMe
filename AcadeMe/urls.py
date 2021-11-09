@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from AcadeMe.views import landing_page
+from AcadeMe.views import landing
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', login, name='landing_page')
+    path('', landing, name='landing')
 ]
