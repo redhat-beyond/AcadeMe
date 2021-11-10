@@ -1,17 +1,18 @@
-<img src="https://www.mediation-sa.lu/wp-content/uploads/2021/01/team1.jpg" width="650">
+<img src="https://i.ibb.co/wg0kWGD/Whats-App-Image-2021-11-08-at-5-56-01-PM.jpg" width="650">
 
 
 # Description
 
-Welcome to our project repository! Enjoy!
+Welcome to AcadeMe! :technologist:
+For students, by students. :student:
 
 
 # Installation
 
 1. Install [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/)/[VMWare](https://www.vmware.com/) hypervisor.
-2. Clone [Team1Project](https://github.com/redhat-beyond/beyond-os-06-group-1) repository.
+2. Clone [AcadeMe](https://github.com/redhat-beyond/AcadeMe) repository.
    ```sh
-   https://github.com/redhat-beyond/beyond-os-06-group-1
+   https://github.com/redhat-beyond/AcadeMe
    ```
 3. Open any terminal and navigate to the project directory.
 4. Run the `vagrant up` command.
@@ -19,15 +20,19 @@ Welcome to our project repository! Enjoy!
 
 # The Team 
 
-[Shaked Hagag](https://github.com/shakedhagag)
+<img src="https://i.ibb.co/CQgnF7L/OurTeam.png" width="650">
 
-[Raz Ashtar](https://github.com/razashtar93)
+[Shaked Hagag](https://github.com/shakedhagag) [Raz Ashtar](https://github.com/razashtar93) [Daniel Waldman](https://github.com/DanWaldman) [Daniel Itkes] (https://github.com/DanielItkes) [Dean Civlin](https://github.com/DeanCivlin)
 
-[Daniel Waldman](https://github.com/DanWaldman)
 
-[Daniel Itkes] (https://github.com/DanielItkes)
+# Architecture
 
-[Dean Civlin]
+| Frontend      | Backend      | Datebase      |
+| ------------- | ------------- | ------------- |
+| HTML          | Python        | SQLite        |
+| CSS           | Django        |  
+| JavaScript    | Vagrant       |
+| Bootstarp     |
 
 
 
@@ -35,9 +40,6 @@ Welcome to our project repository! Enjoy!
 
 
 # Features
-
-
-# Architecture
 
 
 
