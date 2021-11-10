@@ -22,7 +22,7 @@ For students, by students. :student:
 
 <img src="https://i.ibb.co/CQgnF7L/OurTeam.png" width="650">
 
-[Shaked Hagag](https://github.com/shakedhagag) [Raz Ashtar](https://github.com/razashtar93) [Daniel Waldman](https://github.com/DanWaldman) [Daniel Itkes] (https://github.com/DanielItkes) [Dean Civlin]
+[Shaked Hagag](https://github.com/shakedhagag) [Raz Ashtar](https://github.com/razashtar93) [Daniel Waldman](https://github.com/DanWaldman) [Daniel Itkes] (https://github.com/DanielItkes) [Dean Civlin](https://github.com/DeanCivlin)
 
 
 # Architecture
