@@ -10,7 +10,7 @@ For students, by students. :student:
 # Installation
 
 1. Install [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/)/[VMWare](https://www.vmware.com/) hypervisor.
-2. Clone [Team1Project](https://github.com/redhat-beyond/AcadeMe) repository.
+2. Clone [AcadeMe](https://github.com/redhat-beyond/AcadeMe) repository.
    ```sh
    https://github.com/redhat-beyond/AcadeMe
    ```
