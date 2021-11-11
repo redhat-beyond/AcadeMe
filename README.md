@@ -41,5 +41,3 @@ For students, by students. :student:
 
 # Features
 
-
-
