@@ -1,5 +1,26 @@
-from UserModels import *
-from django.utils import timezone
+from django.db import models
+from django.conf import settings
+
+
+class DEGREECHOICES(models.TextChoices):
+    Computer_Science = 'CS', 'Computer Science'
+    Psychology = 'PS', 'Psychology'
+    GOVERNMENT = 'GV', 'GOVERNMENT'
+    Business_Administration = 'BA', 'Business Administration'
+    Unknown = 'UN', 'Unknown'
+
+
+class TYPECHOICES(models.TextChoices):
+    Student = 'S', 'Student'
+    Expert = 'E', 'Expert'
+
+
+class UNIVERSITYCHOICES(models.TextChoices):
+    Reichman_University = 'RU', 'Reichman University'
+    Hebrew_University = 'HU', 'Hebrew University'
+    Tel_Aviv_University = 'TA', 'Tel Aviv University'
+    Beer_Sheva_University = 'BS', "Be'er Sheva University"
+    Unknown = 'UN', 'Unknown'
 
 
 class MessageBoards(models.Model):
