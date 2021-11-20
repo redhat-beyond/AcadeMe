@@ -137,3 +137,11 @@ nohup.out
 # AcadeMeData app
 AcadeMeData/.idea/
 
+# AcadeMe 
+AcadeMe/.idea/
+.idea/workspace.xml
+.idea
+
+# db.sqlite3
+db.sqlite3
+
