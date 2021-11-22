@@ -1,6 +1,7 @@
 # from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import User as DjangoUser
 
 
 # from django.contrib.auth.models import User
@@ -9,7 +10,7 @@ from django.conf import settings
 class DEGREECHOICES(models.TextChoices):
     Computer_Science = 'CS', 'Computer Science'
     Psychology = 'PS', 'Psychology'
-    GOVERNMENT = 'GV', 'GOVERNMENT'
+    GOVERNMENT = 'GV', 'Government'
     Business_Administration = 'BA', 'Business Administration'
     Unknown = 'UN', 'Unknown'
 
@@ -36,5 +37,24 @@ class Users(models.Model):
     university = models.CharField(max_length=2, choices=UNIVERSITYCHOICES.choices, default=UNIVERSITYCHOICES.Unknown)
     degree = models.CharField(max_length=2, choices=DEGREECHOICES.choices, default=DEGREECHOICES.Unknown)
 
-    # def __str__(self):
-    #    return self.user.username
+    @staticmethod
+    def create_user(username, email, password, type, university, degree):
+        django_user = DjangoUser.objects.create_user(username=username,
+                                                     email=email,
+                                                     password=password)
+        user = Users(user=django_user,
+                     type=type,
+                     university=university,
+                     degree=degree)
+        user.save()
+        return user
+
+    def del_user(self):
+        try:
+            self.user.delete()
+        except Users.DoesNotExist:
+            return False
+        return True
+
+    def __str__(self) -> str:
+        return self.first_name
