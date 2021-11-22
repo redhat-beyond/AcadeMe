@@ -137,3 +137,13 @@ nohup.out
 # AcadeMeData app
 AcadeMeData/.idea/
 
+# AcadeMe app - all of the .idea files that created by pycharm
+AcadeMe/.idea/
+.idea/
+.idea/AcadeMe.iml
+.idea/aws.xml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
