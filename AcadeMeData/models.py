@@ -1,6 +1,7 @@
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.conf import settings
+
 
 # from django.contrib.auth.models import User
 
@@ -76,7 +77,12 @@ class Professor(models.Model):
     name = models.CharField(max_length=100)
     university = models.ForeignKey(University, on_delete=models.RESTRICT)  # , related_name='%(class)s_something')
     description = models.CharField(max_length=300)  # maybe change here to: description = models.TextField()
-    rate = models.CharField(min_length=1, max_length=5, choices=range(1 - 5), default=3)
+    # rate = models.CharField(min_length=1, max_length=5, choices=range(1 - 5), default=3)
+    # charField doesn't have min_length option
+    rate = models.DecimalField(max_digits=2, decimal_places=1, validators=[MinValueValidator(1), MaxValueValidator(5)],
+                               blank=True, null=True)  # average professor rating, starts as null
+
+    # for DecimalField goto: https://www.geeksforgeeks.org/decimalfield-django-models/
 
     def __str__(self):
         return self.name
@@ -97,10 +103,14 @@ class Course(models.Model):
     course_id = models.IntegerField(primary_key=True,
                                     validators=[MinValueValidator(0)])  # course id number as given by college?
     name = models.CharField(max_length=100)  # course name as given by college
-    rate = models.CharField(min_length=1, max_length=5, choices=range(1 - 5), default=3)
+    # rate = models.CharField(min_length=1, max_length=5, choices=range(1 - 5), default=3) // this line throw error
     professor = models.ForeignKey(Professor, on_delete=models.RESTRICT)  # , related_name='%(class)s_something')
     degree = models.ForeignKey(Degree, on_delete=models.RESTRICT)  # , related_name='%(class)s_something')
     description = models.CharField(max_length=300)  # maybe change here to: description = models.TextField()
+    rate = models.DecimalField(max_digits=2, decimal_places=1, validators=[MinValueValidator(1), MaxValueValidator(5)],
+                               blank=True, null=True)  # average course rating, starts as null
+
+    # for DecimalField goto: https://www.geeksforgeeks.org/decimalfield-django-models/
 
     def __str__(self):
         return self.name
