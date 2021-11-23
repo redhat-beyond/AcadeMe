@@ -60,8 +60,8 @@ class User(models.Model):
         except User.DoesNotExist:
             return False
         return user
-      
-      
+
+ 
 class Degree(models.Model):
     degree = models.CharField(max_length=100)
     universities = models.TextField(null=True, blank=True)  # Format should be "Uni1, Uni2, Uni3,..."
