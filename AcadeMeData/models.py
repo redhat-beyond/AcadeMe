@@ -49,9 +49,18 @@ class User(models.Model):
         user.save()
         return user
 
+    @staticmethod
     def del_user(self):
         try:
             self.user.delete()
         except User.DoesNotExist:
             return False
         return True
+
+    @staticmethod
+    def get_user(username):
+        try:
+            user = DjangoUser.objects.get(username=username)
+        except User.DoesNotExist:
+            return False
+        return user
