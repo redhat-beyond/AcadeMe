@@ -25,10 +25,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='User',
             fields=[
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='auth.user')),
-                ('type', models.CharField(choices=[('S', 'Student'), ('E', 'Expert')], default='S', max_length=1)),
-                ('university', models.CharField(choices=[('RU', 'Reichman University'), ('HU', 'Hebrew University'), ('TA', 'Tel Aviv University'), ('BS', "Be'er Sheva University"), ('UN', 'Unknown')], default='UN', max_length=2)),
-                ('degree', models.CharField(choices=[('CS', 'Computer Science'), ('PS', 'Psychology'), ('GV', 'Government'), ('BA', 'Business Administration'), ('UN', 'Unknown')], default='UN', max_length=2)),
+                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE,
+                                              primary_key=True, serialize=False, to='auth.user')),
+                ('type', models.CharField(
+                    choices=[('S', 'Student'), ('E', 'Expert')], default='S', max_length=1)),
+                ('university', models.CharField(choices=[
+                    ('RU', 'Reichman University'), ('HU', 'Hebrew University'), ('TA', 'Tel Aviv University'),
+                    ('BS', "Be'er Sheva University"), ('UN', 'Unknown')], default='UN', max_length=2)),
+                ('degree', models.CharField(choices=[
+                    ('CS', 'Computer Science'), ('PS', 'Psychology'), ('GV', 'Government'),
+                    ('BA', 'Business Administration'), ('UN', 'Unknown')], default='UN', max_length=2)),
             ],
         ),
     ]
