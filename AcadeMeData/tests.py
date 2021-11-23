@@ -8,7 +8,7 @@ class TestUniversityModel(pytest):
         universityTest = University.get_university_by_name(
             'Reichman University')
         assert universityTest.exist()
-    
+
     @pytest
     def test_get_university_by_location(self):
         universityTest = University.get_university_by_location(
