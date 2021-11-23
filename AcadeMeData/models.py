@@ -55,4 +55,3 @@ class User(models.Model):
         except User.DoesNotExist:
             return False
         return True
-

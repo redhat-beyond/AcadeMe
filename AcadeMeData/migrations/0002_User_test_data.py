@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         ]
         with transaction.atomic():
             for username, email, password, type, university, degree in user_test_data:
-                user = User.create_user(username, email, password, type, university, degree)
+                User.create_user(username, email, password, type, university, degree)
 
     operations = [
         migrations.RunPython(generate_user_data),
