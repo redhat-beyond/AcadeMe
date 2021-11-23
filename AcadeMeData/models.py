@@ -28,7 +28,7 @@ class UNIVERSITYCHOICES(models.TextChoices):
     Unknown = 'UN', 'Unknown'
 
 
-class Users(models.Model):
+class User(models.Model):
     # The AUTH_USER_MODEL is the built in user model from django
     # Goto: https://docs.djangoproject.com/en/3.2/ref/contrib/auth/ for API
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
@@ -42,19 +42,17 @@ class Users(models.Model):
         django_user = DjangoUser.objects.create_user(username=username,
                                                      email=email,
                                                      password=password)
-        user = Users(user=django_user,
-                     type=type,
-                     university=university,
-                     degree=degree)
+        user = User(user=django_user,
+                    type=type,
+                    university=university,
+                    degree=degree)
         user.save()
         return user
 
     def del_user(self):
         try:
             self.user.delete()
-        except Users.DoesNotExist:
+        except User.DoesNotExist:
             return False
         return True
 
-    def __str__(self) -> str:
-        return self.first_name
