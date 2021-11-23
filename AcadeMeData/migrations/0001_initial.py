@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                              ('BA', 'Business Administration'), ('UN', 'Unknown')], default='UN', max_length=2)),
             ],
         ),
-    
+
         migrations.CreateModel(
             name='Degree',
             fields=[
