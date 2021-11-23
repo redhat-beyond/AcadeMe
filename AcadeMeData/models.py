@@ -1,6 +1,5 @@
 from django.core.validators import MinValueValidator
 from django.db import models
-from django.conf import settings
 
 
 class University(models.Model):
@@ -9,7 +8,12 @@ class University(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     # maybe change here to: description = models.TextField()
-    description = models.CharField(max_length=300)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name
+
+    @staticmethod
+    def get_university_by_id(university_id):
+        # gets the relevant university that match the given ID
+        return University.objects.get(university_id=university_id)

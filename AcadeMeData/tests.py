@@ -1,3 +1,9 @@
-# from django.test import TestCase
+import pytest
+from AcadeMeData.models import University
 
-# Create your tests here.
+
+class TestUniversityModel(pytest):
+    @pytest
+    def test_get_university_by_id(self):
+        universityTest = University.get_university_by_id(1)
+        assert universityTest.exist()
