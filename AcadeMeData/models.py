@@ -61,7 +61,7 @@ class User(models.Model):
             return False
         return user
 
- 
+
 class Degree(models.Model):
     degree = models.CharField(max_length=100)
     universities = models.TextField(null=True, blank=True)  # Format should be "Uni1, Uni2, Uni3,..."
