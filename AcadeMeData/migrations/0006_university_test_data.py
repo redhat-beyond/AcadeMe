@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
         university_test_data = [
             ('Reichman University', 'Herzliya', 'Very nice university'),
-            ('Hebrew University', 'user2@gmail.com', 'Very good university')
+            ('Hebrew University', 'Jerusalem', 'Very good university')
         ]
         with transaction.atomic():
             for name, location, description in university_test_data:
