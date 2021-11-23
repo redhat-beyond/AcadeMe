@@ -3,7 +3,6 @@ from django.db import migrations, transaction
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('auth', '__latest__'),
         ('AcadeMeData', '0001_initial'),
     ]
 

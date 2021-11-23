@@ -4,7 +4,9 @@ from django.db import migrations, transaction
 class Migration(migrations.Migration):
 
     dependencies = [
+        
         ('AcadeMeData', '0001_initial'),
+        ('AcadeMeData', '0002_User_test_data')
     ]
 
     def generate_data(apps, schema_editor):
