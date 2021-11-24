@@ -7,6 +7,7 @@ class Migration(migrations.Migration):
         ('auth', '__latest__'),
         ('AcadeMeData', '0001_initial'),
     ]
+
     def generate_university_data(apps, schema_editor):
         from AcadeMeData.models import University
 
