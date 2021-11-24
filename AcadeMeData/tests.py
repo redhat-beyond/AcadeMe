@@ -1,8 +1,8 @@
 import pytest
-from models import User, Professor, University
+from AcadeMeData.models import User, Professor, University
 
 
-class TestUserModel(pytest):
+class TestUserModel:
     def user_example(self):
         user_data = {'username': "username", 'password': "password", 'email': "user@example.com", 'type': "S",
                      'university': "RU",
@@ -41,6 +41,7 @@ class TestUniversityModel(pytest):
         test_university = University(name='BS').save()
         universityTest = University.get_university_by_name(
             'BS')
+        assert test_university == universityTest
         assert universityTest.exist()
 
     @pytest
@@ -48,10 +49,11 @@ class TestUniversityModel(pytest):
         test_university = University(location='Jerusalem').save()
         universityTest = University.get_university_by_location(
             'Jerusalem')
+        assert test_university == universityTest
         assert universityTest.exist()
 
 
-class TestProffesorModel(pytest):
+class TestProffesorModel:
     @pytest
     def test_get_name(self):
         test_proffesor = Professor(Proffesor='Dani the mani').save()
