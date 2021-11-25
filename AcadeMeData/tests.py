@@ -47,9 +47,9 @@ def test_get_user(self):
 
 @pytest.mark.django_db
 def test_get_name(self):
-"""
-Tests whether the degree name is correct.
-"""
+    """
+    Tests whether the degree name is correct.
+    """
 
 test_degree = Degree(degree='Computer Science').save()
 assert not test_degree.get_name() == 'Reichman University'
@@ -57,9 +57,9 @@ assert not test_degree.get_name() == 'Reichman University'
 
 @pytest.mark.django_db
 def test_universities(self):
-"""
-Tests whether a university offers this degree.
-"""
+    """
+    Tests whether a university offers this degree.
+    """
 
 test_degree = Degree(degree='Economics', universities='Reichman University').save()
 assert "Reichman University" in test_degree.universities()
