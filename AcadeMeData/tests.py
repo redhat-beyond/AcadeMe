@@ -42,5 +42,5 @@ class TestUserModel:
         user_for_example = self.user_example()
         # users_list = User.objects.all()
         # assert users_list[0].user.username == "user5"  # the first user in 0002_User_test_data
-        user = User.get_user('username') == user_for_example.user
+        assert User.get_user('username') == user_for_example.user
         # assert users_list[len(users_list) - 1] == user_for_example
