@@ -31,12 +31,12 @@ class TestUserModel:
         # assert users_list[len(users_list) - 1].user.university == user_data.university # this not working
         # assert users_list[len(users_list) - 1].user.degree == user_data.degree # this not working
 
-    def test_del_user(self):  # TODO: need to finish this function
-        pass
-        """user_for_example = self.user_example()
+    def test_del_user(self):
+        user_for_example = self.user_example()
         # users_list = User.objects.all()
         assert User.del_user(user_for_example)
-        assert not User.get_user('username')"""
+        user = User.get_user("username")
+        assert user is None
 
     def test_get_user(self):
         user_for_example = self.user_example()
