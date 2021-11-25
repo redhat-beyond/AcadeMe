@@ -1,8 +1,8 @@
 import pytest
-from academedata.models import User
-from academedata.models import Degree
+from AcadeMeData.models import User, Degree
 
 
+# Tests for User Model
 @pytest.mark.django_db
 def user_example(self):
     user_data = {'username': "username", 'password': "password", 'email': "user@example.com", 'type': "S",
@@ -38,13 +38,14 @@ def test_get_user(self):
     assert User.get_user(user_data.get('username')) == user
 
 
+# Tests for Degree model
 @pytest.mark.django_db
 def test_get_name(self):
     """
     Tests whether the degree name is correct.
     """
 
-    test_degree = Degree(degree='Computer Science').save()
+    test_degree = Degree(name='Computer Science').save()
     assert not test_degree.get_name() == 'Reichman University'
 
 
@@ -54,5 +55,5 @@ def test_universities(self):
     Tests whether a university offers this degree.
     """
 
-    test_degree = Degree(degree='Economics', universities='Reichman University').save()
+    test_degree = Degree(name='Economics', universities='Reichman University').save()
     assert "Reichman University" in test_degree.universities()

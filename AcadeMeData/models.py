@@ -72,7 +72,7 @@ class Degree(models.Model):
         """
         Returns the name of all possible degrees in the database.
         """
-        return self.degree
+        return self.name
 
     def get_name(self):
         return self.name
