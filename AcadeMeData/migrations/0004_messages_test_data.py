@@ -8,7 +8,6 @@ class Migration(migrations.Migration):
     ]
 
 
-
     def generate_msgdata(apps, schema_editor):
         from AcadeMeData.models import Messages, User
         user_test_data = [
@@ -20,8 +19,8 @@ class Migration(migrations.Migration):
         with transaction.atomic():
             for username, email, password, type, university, degree in user_test_data:
                 User.create_user(username, email, password, type, university, degree)
-        userrnd1=User.objects.get(user=5)
-        userrnd2=User.objects.get(user=6)
+        userrnd1 = User.objects.get(user=5)
+        userrnd2 = User.objects.get(user=6)
         test_data = [
             (1, userrnd1, 'random message'),
             (2, userrnd2, 'random message2'),
