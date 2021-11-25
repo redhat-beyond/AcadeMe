@@ -57,6 +57,14 @@ class User(models.Model):
     def get_user(username):
         try:
             user = DjangoUser.objects.get(username=username)
+        except DjangoUser.DoesNotExist:
+            return None
+        return user
+
+    """    def get_user(username):
+        try:
+            user = DjangoUser.objects.get(username=username)
         except User.DoesNotExist:
             return False
         return user
+    """
