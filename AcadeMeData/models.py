@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
@@ -83,4 +84,5 @@ class Messages(models.Model):
     def get_msg(self):
         return self.msgID
     
+
 
