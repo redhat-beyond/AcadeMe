@@ -1,5 +1,5 @@
 from django import forms
-from .models import Messages, MessageBoards
+from .models import Messages
 
 
 class MessageForm(forms.ModelForm):
