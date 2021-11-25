@@ -63,7 +63,7 @@ class User(models.Model):
 
 
 class Degree(models.Model):
-    degree = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     universities = models.TextField(null=True, blank=True)  # Format should be "Uni1, Uni2, Uni3,..."
     description = models.TextField(null=True, blank=True)  # Describes the degree
 
@@ -75,7 +75,10 @@ class Degree(models.Model):
         return self.degree
 
     def get_name(self):
-        return self.degree
+        return self.name
+        """
+        Returns the name of a specific degree.
+        """
 
     def get_description(self):
         """
