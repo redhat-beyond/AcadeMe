@@ -6,7 +6,6 @@ from django.contrib.auth.models import User as DjangoUser
 from django.contrib.auth.models import UserManager
 
 
-
 class DEGREECHOICES(models.TextChoices):
     Computer_Science = 'CS', 'Computer Science'
     Psychology = 'PS', 'Psychology'
@@ -14,12 +13,12 @@ class DEGREECHOICES(models.TextChoices):
     Business_Administration = 'BA', 'Business Administration'
     Unknown = 'UN', 'Unknown'
 
-
+    
 class TYPECHOICES(models.TextChoices):
     Student = 'S', 'Student'
     Expert = 'E', 'Expert'
 
-
+    
 class UNIVERSITYCHOICES(models.TextChoices):
     Reichman_University = 'RU', 'Reichman University'
     Hebrew_University = 'HU', 'Hebrew University'
@@ -74,6 +73,7 @@ class MessageBoards(models.Model):
 
     def __str__(self):
         return self.id
+    
 
 class Messages(models.Model):
     msgID = models.IntegerField(primary_key=True)
@@ -83,6 +83,4 @@ class Messages(models.Model):
 
     def get_msg(self):
         return self.msgID
-    
-
 
