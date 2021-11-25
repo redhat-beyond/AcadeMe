@@ -8,10 +8,8 @@ class Migration(migrations.Migration):
     ]
 
 
-
     def generate_msgtagsdata(apps, schema_editor):
         from AcadeMeData.models import MessageTags, User, Messages
-        msgID1 = Messages.get_msg
         userrnd1=User.objects.get(user=5)
         userrnd2=User.objects.get(user=6)
         test_data = [
