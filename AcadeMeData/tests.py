@@ -69,22 +69,29 @@ class TestUniversityModel:
 
 
 @pytest.mark.django_db
-class TestProffesorModel:
-    def proffesor_example(self):
+class TestProfessorModel:
+    def get_proffesor(self, professor_id=1, name="DR Arnold Schwarteneiger", university=None,
+                      description="A cool guy who looked familliar", rate=4.5):
         university = TestUniversityModel.university_example(self)
-        professor = Professor.create_professor(professor_id=1,
-                                               name="DR Arnold Schwarteneiger",
+        professor = Professor.create_professor(professor_id=professor_id,
+                                               name=name,
                                                university=university,
-                                               description="A cool guy who lookd familliar",
-                                               rate=4.5)
+                                               description=description,
+                                               rate=rate)
         return professor
 
-    def test_get_name(self):
-        professor_for_example = self.proffesor_example()
-        assert professor_for_example.get_name() == "DR Arnold Schwarteneiger"
+    def test_get_name(self, professor_id=1, name="DR Arnold Schwarteneiger", university=None,
+                      description="A cool guy who looked familliar", rate=4.5):
+        university = TestUniversityModel.university_example(self)
+        professor_for_example = self.get_proffesor(professor_id=1,
+                                                   name="DR Arnold Schwarzenegger",
+                                                   university=university,
+                                                   description="A cool guy who looked familiar",
+                                                   rate=4.5)
+        assert professor_for_example.get_name() == "DR Arnold Schwarzenegger"
 
-    def test_create_professor(self):
-        professor_for_example = self.proffesor_example()
-        professor = Professor.get_proffesor('DR Arnold Schwarteneiger')
+    def test_create_professor(self, name="DR Arnold Schwarteneiger"):
+        professor_for_example = self.get_proffesor()
+        professor = Professor.get_proffesor(name)
         assert professor.get_name() == professor_for_example.name
         assert professor.get_description() == professor_for_example.description
