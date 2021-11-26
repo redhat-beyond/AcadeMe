@@ -57,9 +57,17 @@ class User(models.Model):
     def get_user(username):
         try:
             user = DjangoUser.objects.get(username=username)
+        except DjangoUser.DoesNotExist:
+            return None
+        return user
+
+    """    def get_user(username):
+        try:
+            user = DjangoUser.objects.get(username=username)
         except User.DoesNotExist:
             return False
         return user
+    """
 
 
 class Degree(models.Model):
@@ -85,7 +93,7 @@ class Degree(models.Model):
         Returns the description of a specific degree.
         """
         return self.description
-
+ 
     def get_universities(self):
         """
         Returns a string of all universities that offers this degree.
