@@ -1,5 +1,5 @@
 import pytest
-from AcadeMeData.models import User, Degree
+from AcadeMeData.models import User
 
 
 @pytest.mark.django_db
