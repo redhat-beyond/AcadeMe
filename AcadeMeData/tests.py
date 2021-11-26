@@ -1,5 +1,5 @@
 import pytest
-from AcadeMeData.models import User
+from AcadeMeData.models import User, Professor, University
 
 
 @pytest.mark.django_db
@@ -43,4 +43,55 @@ class TestUserModel:
         # users_list = User.objects.all()
         # assert users_list[0].user.username == "user5"  # the first user in 0002_User_test_data
         assert User.get_user('username') == user_for_example.user
-        # assert users_list[len(users_list) - 1] == user_for_example
+
+
+@pytest.mark.django_db
+class TestUniversityModel:
+    def university_example(self):
+        university = University(university_id=1, name='Reichman University', location="Herzlia",
+                                description="A nice place")
+        university.save()
+        return university
+
+    def test_get_university_by_name(self):
+        test_university = self.university_example()
+        university_test = University.get_university_by_name(
+            'Reichman University')
+        assert test_university == university_test
+        assert isinstance(university_test, University)
+
+    def test_get_university_by_location(self):
+        test_university = self.university_example()
+        university_test = University.get_university_by_location(
+            'Herzlia')
+        assert test_university == university_test
+        assert isinstance(university_test, University)
+
+
+@pytest.mark.django_db
+class TestProfessorModel:
+    def get_proffesor(self, professor_id=1, name="DR Arnold Schwarteneiger", university=None,
+                      description="A cool guy who looked familliar", rate=4.5):
+        university = TestUniversityModel.university_example(self)
+        professor = Professor.create_professor(professor_id=professor_id,
+                                               name=name,
+                                               university=university,
+                                               description=description,
+                                               rate=rate)
+        return professor
+
+    def test_get_name(self, professor_id=1, name="DR Arnold Schwarteneiger", university=None,
+                      description="A cool guy who looked familliar", rate=4.5):
+        university = TestUniversityModel.university_example(self)
+        professor_for_example = self.get_proffesor(professor_id=1,
+                                                   name="DR Arnold Schwarzenegger",
+                                                   university=university,
+                                                   description="A cool guy who looked familiar",
+                                                   rate=4.5)
+        assert professor_for_example.get_name() == "DR Arnold Schwarzenegger"
+
+    def test_create_professor(self, name="DR Arnold Schwarteneiger"):
+        professor_for_example = self.get_proffesor()
+        professor = Professor.get_proffesor(name)
+        assert professor.get_name() == professor_for_example.name
+        assert professor.get_description() == professor_for_example.description

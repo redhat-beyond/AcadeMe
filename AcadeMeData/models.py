@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class DEGREECHOICES(models.TextChoices):
@@ -68,3 +69,61 @@ class User(models.Model):
             return False
         return user
     """
+
+
+class University(models.Model):
+    university_id = models.IntegerField(
+        primary_key=True, validators=[MinValueValidator(0)])
+    name = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    # maybe change here to: description = models.TextField()
+    description = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    @staticmethod
+    def get_university_by_name(name):
+        # gets the relevant university that match the given name
+        return University.objects.get(name=name)
+
+    @staticmethod
+    def get_university_by_location(location):
+        # gets the relevant university that match the given location
+        return University.objects.get(location=location)
+
+
+class Professor(models.Model):
+    professor_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)])
+    name = models.CharField(max_length=100)
+    university = models.ForeignKey(University, on_delete=models.RESTRICT)  # , related_name='%(class)s_something')
+    description = models.TextField(null=True, blank=True)
+    rate = models.DecimalField(max_digits=2, decimal_places=1, validators=[MinValueValidator(1), MaxValueValidator(5)],
+                               blank=True, null=True)  # average professor rating, starts as null
+
+    def __str__(self):
+        return self.name
+
+    @staticmethod
+    def create_professor(professor_id, name, university, description, rate):
+        professor = Professor(professor_id=professor_id,
+                              name=name,
+                              university=university,
+                              description=description,
+                              rate=rate)
+        professor.save()
+        return professor
+
+    @staticmethod
+    def get_proffesor(name):
+        try:
+            professor = Professor.objects.get(name=name)
+        except professor.DoesNotExist:
+            return None
+        return professor
+
+    def get_name(self):
+        return self.name
+
+    def get_description(self):
+        return self.description
