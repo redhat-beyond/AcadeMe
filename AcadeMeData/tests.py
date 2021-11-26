@@ -45,50 +45,46 @@ class TestUserModel:
         assert User.get_user('username') == user_for_example.user
 
 
-class TestUniversityModel(pytest):
-    @pytest
+@pytest.mark.django_db
+class TestUniversityModel:
+    def university_example(self):
+        university = University(university_id=1, name='Reichman University', location="Herzlia",
+                                description="A nice place")
+        university.save()
+        return university
+
     def test_get_university_by_name(self):
-        test_university = University(name='BS').save()
-        universityTest = University.get_university_by_name(
-            'BS')
-        assert test_university == universityTest
-        assert universityTest.exist()
+        test_university = self.university_example()
+        university_test = University.get_university_by_name(
+            'Reichman University')
+        assert test_university == university_test
+        assert isinstance(university_test, University)
 
-    @pytest
     def test_get_university_by_location(self):
-        test_university = University(location='Jerusalem').save()
-        universityTest = University.get_university_by_location(
-            'Jerusalem')
-        assert test_university == universityTest
-        assert universityTest.exist()
+        test_university = self.university_example()
+        university_test = University.get_university_by_location(
+            'Herzlia')
+        assert test_university == university_test
+        assert isinstance(university_test, University)
 
 
+@pytest.mark.django_db
 class TestProffesorModel:
-    @pytest
+    def proffesor_example(self):
+        university = TestUniversityModel.university_example(self)
+        professor = Professor.create_professor(professor_id=1,
+                                               name="DR Arnold Schwarteneiger",
+                                               university=university,
+                                               description="A cool guy who lookd familliar",
+                                               rate=4.5)
+        return professor
+
     def test_get_name(self):
-        test_proffesor = Professor(Proffesor='Dani the mani').save()
-        assert test_proffesor.get_name() == "Dani the mani"
+        professor_for_example = self.proffesor_example()
+        assert professor_for_example.get_name() == "DR Arnold Schwarteneiger"
 
-    @pytest
-    def test_del_proffesor(self):
-        test_proffesor = Professor(university='Dr arnold schwvartanager').save()
-        assert isinstance(Professor, test_proffesor)
-        assert Professor.del_Professor(test_proffesor)
-        assert not Professor.del_Professor(test_proffesor)
-
-    @pytest
     def test_create_professor(self):
-        professor_data = {'professor_id': "professor_id",
-                          'name': 'name',
-                          'university': 'university',
-                          'description': 'description',
-                          'rate': 'rate'}
-        professor = Professor.create_professor(*professor_data)
-        assert isinstance(professor, Professor)
-        assert professor.professor_id == professor_data.get('professor_id')
-        assert professor.name == professor_data.get('name')
-        assert professor.university == professor_data.get('university')
-        assert professor.description == professor_data.get('description')
-        assert professor.rate == professor_data.get('rate')
-        assert professor.get_name() == professor_data.get('name')
-
+        professor_for_example = self.proffesor_example()
+        professor = Professor.get_proffesor('DR Arnold Schwarteneiger')
+        assert professor.get_name() == professor_for_example.name
+        assert professor.get_description() == professor_for_example.description

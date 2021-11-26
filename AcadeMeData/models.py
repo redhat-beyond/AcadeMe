@@ -115,13 +115,12 @@ class Professor(models.Model):
         return professor
 
     @staticmethod
-    def del_professor(professor_id):
+    def get_proffesor(name):
         try:
-            professor = DjangoUser.objects.get(professor_id=professor_id)
+            professor = Professor.objects.get(name=name)
         except professor.DoesNotExist:
-            return False
-        professor.delete()
-        return True
+            return None
+        return professor
 
     def get_name(self):
         return self.name
