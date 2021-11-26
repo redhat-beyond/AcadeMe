@@ -45,6 +45,7 @@ class TestUserModel:
         assert User.get_user('username') == user_for_example.user
         # assert users_list[len(users_list) - 1] == user_for_example
 
+
 @pytest.mark.django_db
 class TestDegreeModel:
     def test_get_name(self):
