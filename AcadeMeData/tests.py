@@ -44,23 +44,3 @@ class TestUserModel:
         # assert users_list[0].user.username == "user5"  # the first user in 0002_User_test_data
         assert User.get_user('username') == user_for_example.user
         # assert users_list[len(users_list) - 1] == user_for_example
-
-
-@pytest.mark.django_db
-class TestDegreeModel:
-    def test_get_name(self):
-        """
-        Tests whether the degree name is correct.
-        """
-
-        test_degree = Degree(name='Computer Science').save()
-        assert not test_degree.get_name() == 'Reichman University'
-
-    def test_universities(self):
-        """
-        Tests whether a university offers this degree.
-        """
-
-        test_degree = Degree(name='Economics', universities='Reichman University').save()
-        assert "Reichman University" in test_degree.universities()
-        
