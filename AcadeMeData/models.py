@@ -93,7 +93,7 @@ class Degree(models.Model):
         Returns the description of a specific degree.
         """
         return self.description
- 
+
     def get_universities(self):
         """
         Returns a string of all universities that offers this degree.
