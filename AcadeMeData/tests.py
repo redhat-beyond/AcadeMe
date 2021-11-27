@@ -89,6 +89,7 @@ class TestProfessorModel:
         assert professor.get_name() == professor_for_example.name
         assert professor.get_description() == professor_for_example.description
 
+
 @pytest.mark.django_db
 class TestDegreeModel:
     def degree_example(self):
