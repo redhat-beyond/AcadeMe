@@ -88,7 +88,7 @@ class Degree(models.Model):
     @staticmethod
     def create_degree(degree_id, name, universities, description):
         """
-        Creates a degree object.
+        Creates a Degree object.
         """
         
         degree = Degree(degree_id=degree_id, name=name, universities=universities, description=description)
@@ -117,3 +117,119 @@ class Degree(models.Model):
         
         return self.universities
 
+
+class University(models.Model):
+    university_id = models.IntegerField(
+        primary_key=True, validators=[MinValueValidator(0)])
+    name = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    # maybe change here to: description = models.TextField()
+    description = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    @staticmethod
+    def get_university_by_name(name):
+        # gets the relevant university that match the given name
+        return University.objects.get(name=name)
+
+    @staticmethod
+    def get_university_by_location(location):
+        # gets the relevant university that match the given location
+        return University.objects.get(location=location)
+
+
+class Professor(models.Model):
+    professor_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)])
+    name = models.CharField(max_length=100)
+    university = models.ForeignKey(University, on_delete=models.RESTRICT)  # , related_name='%(class)s_something')
+    description = models.TextField(null=True, blank=True)
+    rate = models.DecimalField(max_digits=2, decimal_places=1, validators=[MinValueValidator(1), MaxValueValidator(5)],
+                               blank=True, null=True)  # average professor rating, starts as null
+
+    def __str__(self):
+        return self.name
+
+    @staticmethod
+    def create_professor(professor_id, name, university, description, rate):
+        professor = Professor(professor_id=professor_id,
+                              name=name,
+                              university=university,
+                              description=description,
+                              rate=rate)
+        professor.save()
+        return professor
+
+    @staticmethod
+    def get_proffesor(name):
+        try:
+            professor = Professor.objects.get(name=name)
+        except professor.DoesNotExist:
+            return None
+        return professor
+
+    def get_name(self):
+        return self.name
+
+    def get_description(self):
+        return self.description
+
+class Course(models.Model):
+    course_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)], default=0)
+    name = models.CharField(max_length=100)  # Name of the course
+    degree = models.ForeignKey(Degree, on_delete=models.RESTRICT)
+    elective = models.BooleanField(default=False) # False for mandatory, True for elective
+    description = models.TextField(null=True, blank=True) #Decribes the course
+    professor = models.ForeignKey(Professor, on_delete=models.RESTRICT)
+
+    # Fields for a rating system we will implement later:
+    # The rating of this course.
+    rating = models.DecimalField(
+        max_digits=2, decimal_places=1, validators=
+        [MinValueValidator(1), MaxValueValidator(5)],
+        blank=True, null=True)
+    # Counter for the number of rates, will be used later to calculate the rating.
+    sum_rates = models.IntegerField(
+        validators=[MinValueValidator(0)], default=0)
+
+
+    #methods
+    def __str__(self):
+        """
+        Returns the name of all possible courses in the database.
+        """
+        return self.course
+
+    @staticmethod
+    def create_course(course_id, name, degree, elective, description, professor):
+        """
+        Creates a Course object.
+        """
+        course = Course(course_id=course_id,
+                              name=name,
+                              degree=degree,
+                              elective=elective,
+                              description=description,
+                              professor=professor)
+        course.save()
+        return course
+
+    def get_name(self):
+        """
+        Returns the name of this specific course.
+        """
+        return self.course
+
+    def get_description(self):
+        """
+        Returns the description of a specific course.
+        """
+        return self.description
+
+    def is_elective(self):
+        """
+        Returns 'True' if this course is an elective
+        and 'False' if this course is mandatory.
+        """
+        return self.elective
