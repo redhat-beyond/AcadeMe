@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -145,3 +145,17 @@ class Messages(models.Model):
 
     def get_msg(self):
         return self.msgID
+
+    def create_message(id,user,text):
+        with transaction.atomic():
+            msg=Messages(msgID=id, userID=user,text=text)
+            msg.save()
+            return msg
+
+class MessageTags(models.Model):
+    id = models.IntegerField(primary_key=True, default=0)
+    msgID = models.ForeignKey(Messages, on_delete=models.CASCADE)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+         return self.id

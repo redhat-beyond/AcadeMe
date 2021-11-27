@@ -7,8 +7,6 @@ class Migration(migrations.Migration):
         ('AcadeMeData', '0001_initial'),
     ]
 
-
-
     def generate_msgdata(apps, schema_editor):
         from AcadeMeData.models import Messages, User
         userrnd1= User.create_user('name','email','pass', 's','kaki','cs')
