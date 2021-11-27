@@ -1,5 +1,5 @@
 import pytest
-from AcadeMeData.models import User
+from AcadeMeData.models import User, Degree
 
 
 @pytest.mark.django_db
@@ -44,3 +44,12 @@ class TestUserModel:
         # assert users_list[0].user.username == "user5"  # the first user in 0002_User_test_data
         assert User.get_user('username') == user_for_example.user
         # assert users_list[len(users_list) - 1] == user_for_example
+
+
+@pytest.mark.django_db
+class TestDegreeModel:
+    def test_create_degree(self, degree_id=1, name="History", universities="Reichman University, Ben Gurion University",
+                                      description="Learn about historic events and their influences on the world"):
+        degree_test = Degree.create_degree(degree_id=degree_id, name=name, universities=universities, description=description)
+        assert "Reichman University" in degree_test.universities 
+        assert degree_test.name == "History"
