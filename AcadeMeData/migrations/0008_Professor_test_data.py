@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     def generate_professor_data(apps, schema_editor):
         from AcadeMeData.models import Professor, University
         university = University(university_id=5, name="Reichman University", location='Herzliya',
-                         description='Very nice university')
+                                description='Very nice university')
         university.save()
         professor_test_data = [
             (1, 'alison', university, 'Very nice guy', '4'),
