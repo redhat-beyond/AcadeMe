@@ -15,7 +15,8 @@ class Migration(migrations.Migration):
         ]
         with transaction.atomic():
             for id, text in test_data:
-                MessageBoards(id=id, courseName=text).save()
+                msgboard=MessageBoards(id=id, courseName=text)
+                msgboard.save()
 
     operations = [
         migrations.RunPython(generate_data),

@@ -74,7 +74,7 @@ class User(models.Model):
 
 class University(models.Model):
     university_id = models.IntegerField(
-        primary_key=True, validators=[MinValueValidator(0)])
+        primary_key=True, validators=[MinValueValidator(0)], default=0)
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     # maybe change here to: description = models.TextField()
@@ -95,7 +95,7 @@ class University(models.Model):
 
 
 class Professor(models.Model):
-    professor_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)])
+    professor_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)], default=0)
     name = models.CharField(max_length=100)
     university = models.ForeignKey(University, on_delete=models.RESTRICT)  # , related_name='%(class)s_something')
     description = models.TextField(null=True, blank=True)
@@ -139,7 +139,7 @@ class MessageBoards(models.Model):
 
 class Messages(models.Model):
     msgID = models.IntegerField(primary_key=True)
-    userID = models.ForeignKey(User, on_delete=models.CASCADE)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE,default=0)
     text = models.TextField(max_length=300)
     msgDate = models.DateTimeField(default=timezone.now)
 
