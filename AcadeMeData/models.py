@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils import timezone
 
 
 class DEGREECHOICES(models.TextChoices):
@@ -127,3 +128,20 @@ class Professor(models.Model):
 
     def get_description(self):
         return self.description
+
+
+class MessageBoards(models.Model):
+    id = models.IntegerField(primary_key=True)
+    courseName = models.TextField(max_length=30)
+
+    def __str__(self):
+        return self.id
+
+class Messages(models.Model):
+    msgID = models.IntegerField(primary_key=True)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField(max_length=300)
+    msgDate = models.DateTimeField(default=timezone.now)
+
+    def get_msg(self):
+        return self.msgID
