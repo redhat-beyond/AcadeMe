@@ -1,5 +1,5 @@
 import pytest
-from AcadeMeData.models import User, Professor, University
+from AcadeMeData.models import User, Professor, University, MessageBoards
 
 
 @pytest.mark.django_db
@@ -88,3 +88,19 @@ class TestProfessorModel:
         professor = Professor.get_professor(name)
         assert professor.get_name() == professor_for_example.name
         assert professor.get_description() == professor_for_example.description
+
+@pytest.mark.django_db
+class TestMessageBoardModel:
+    def generate_msgboard(self, id=1, courseName="Linear Algebra"):
+        msgboard = MessageBoards(id=id, courseName=courseName)
+        msgboard.save()
+        return msgboard
+    
+    def test_get_msgboard(self, id=1, courseName="Linear Algebra"):
+        msgboard=TestMessageBoardModel.generate_msgboard(self, id, courseName)
+        msgboard_test=msgboard.get_msgboard_by_id(1)
+        assert msgboard_test == msgboard
+        assert isinstance(msgboard_test, MessageBoards)
+
+
+

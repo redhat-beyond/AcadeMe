@@ -128,7 +128,16 @@ class MessageBoards(models.Model):
 
     def __str__(self):
         return self.id
+    
+    @staticmethod
+    def create_msgboard(id,courseName):
+        msgboard = MessageBoards(id=id, courseName=courseName)
+        msgboard.save()
+        return msgboard
 
+    @staticmethod
+    def get_msgboard_by_id(id):
+        return MessageBoards.objects.get(id=id)
 
 class Messages(models.Model):
     msgID = models.IntegerField(primary_key=True)
