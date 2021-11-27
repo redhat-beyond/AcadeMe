@@ -63,18 +63,10 @@ class User(models.Model):
             return None
         return user
 
-    """    def get_user(username):
-        try:
-            user = DjangoUser.objects.get(username=username)
-        except User.DoesNotExist:
-            return False
-        return user
-    """
-
 
 class University(models.Model):
     university_id = models.IntegerField(
-        primary_key=True, validators=[MinValueValidator(0)], default=0)
+        primary_key=True, validators=[MinValueValidator(0)])
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     # maybe change here to: description = models.TextField()
@@ -95,7 +87,7 @@ class University(models.Model):
 
 
 class Professor(models.Model):
-    professor_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)], default=0)
+    professor_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)])
     name = models.CharField(max_length=100)
     university = models.ForeignKey(University, on_delete=models.RESTRICT)  # , related_name='%(class)s_something')
     description = models.TextField(null=True, blank=True)
@@ -116,7 +108,7 @@ class Professor(models.Model):
         return professor
 
     @staticmethod
-    def get_proffesor(name):
+    def get_professor(name):
         try:
             professor = Professor.objects.get(name=name)
         except professor.DoesNotExist:
@@ -128,8 +120,6 @@ class Professor(models.Model):
 
     def get_description(self):
         return self.description
-
-
 class MessageBoards(models.Model):
     id = models.IntegerField(primary_key=True)
     courseName = models.TextField(max_length=30)
