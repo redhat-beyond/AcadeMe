@@ -62,14 +62,6 @@ class User(models.Model):
             return None
         return user
 
-    """    def get_user(username):
-        try:
-            user = DjangoUser.objects.get(username=username)
-        except User.DoesNotExist:
-            return False
-        return user
-    """
-
 
 class Degree(models.Model):
     degree_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)], default=0)
@@ -162,7 +154,7 @@ class Professor(models.Model):
         return professor
 
     @staticmethod
-    def get_proffesor(name):
+    def get_professor(name):
         try:
             professor = Professor.objects.get(name=name)
         except professor.DoesNotExist:
