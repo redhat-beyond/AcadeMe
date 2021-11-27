@@ -128,9 +128,9 @@ class MessageBoards(models.Model):
 
     def __str__(self):
         return self.id
-    
+
     @staticmethod
-    def create_msgboard(id,courseName):
+    def create_msgboard(id, courseName):
         msgboard = MessageBoards(id=id, courseName=courseName)
         msgboard.save()
         return msgboard
@@ -138,6 +138,7 @@ class MessageBoards(models.Model):
     @staticmethod
     def get_msgboard_by_id(id):
         return MessageBoards.objects.get(id=id)
+
 
 class Messages(models.Model):
     msgID = models.IntegerField(primary_key=True)
@@ -154,6 +155,10 @@ class Messages(models.Model):
             msg.save()
             return msg
 
+    @staticmethod
+    def get_msg_by_id(msgID):
+        return Messages.objects.get(msgID=msgID)
+
 
 class MessageTags(models.Model):
     id = models.IntegerField(primary_key=True, default=0)
@@ -162,3 +167,6 @@ class MessageTags(models.Model):
 
     def __str__(self):
         return self.id
+
+    def get_msg_tag(id):
+        return MessageTags.objects.get(id=id)
