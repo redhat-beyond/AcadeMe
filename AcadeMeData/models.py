@@ -120,6 +120,8 @@ class Professor(models.Model):
 
     def get_description(self):
         return self.description
+
+
 class MessageBoards(models.Model):
     id = models.IntegerField(primary_key=True)
     courseName = models.TextField(max_length=30)

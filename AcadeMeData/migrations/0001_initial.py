@@ -7,7 +7,6 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -33,7 +32,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='University',
             fields=[
-                ('university_id', models.IntegerField(primary_key=True, serialize=False, validators=[django.core.validators.MinValueValidator(0)])),
+                ('university_id', models.IntegerField(primary_key=True, serialize=False,
+                                                      validators=[django.core.validators.MinValueValidator(0)])),
                 ('name', models.CharField(max_length=100)),
                 ('location', models.CharField(max_length=100)),
                 ('description', models.TextField(blank=True, null=True)),
@@ -42,20 +42,30 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='User',
             fields=[
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='auth.user')),
+                ('user',
+                 models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False,
+                                      to='auth.user')),
                 ('type', models.CharField(choices=[('S', 'Student'), ('E', 'Expert')], default='S', max_length=1)),
-                ('university', models.CharField(choices=[('RU', 'Reichman University'), ('HU', 'Hebrew University'), ('TA', 'Tel Aviv University'), ('BS', "Be'er Sheva University"), ('UN', 'Unknown')], default='UN', max_length=2)),
-                ('degree', models.CharField(choices=[('CS', 'Computer Science'), ('PS', 'Psychology'), ('GV', 'Government'), ('BA', 'Business Administration'), ('UN', 'Unknown')], default='UN', max_length=2)),
+                ('university', models.CharField(
+                    choices=[('RU', 'Reichman University'), ('HU', 'Hebrew University'), ('TA', 'Tel Aviv University'),
+                             ('BS', "Be'er Sheva University"), ('UN', 'Unknown')], default='UN', max_length=2)),
+                ('degree', models.CharField(
+                    choices=[('CS', 'Computer Science'), ('PS', 'Psychology'), ('GV', 'Government'),
+                             ('BA', 'Business Administration'), ('UN', 'Unknown')], default='UN', max_length=2)),
             ],
         ),
         migrations.CreateModel(
             name='Professor',
             fields=[
-                ('professor_id', models.IntegerField(primary_key=True, serialize=False, validators=[django.core.validators.MinValueValidator(0)])),
+                ('professor_id', models.IntegerField(primary_key=True, serialize=False,
+                                                     validators=[django.core.validators.MinValueValidator(0)])),
                 ('name', models.CharField(max_length=100)),
                 ('description', models.TextField(blank=True, null=True)),
-                ('rate', models.DecimalField(blank=True, decimal_places=1, max_digits=2, null=True, validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(5)])),
-                ('university', models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, to='AcadeMeData.university')),
+                ('rate', models.DecimalField(blank=True, decimal_places=1, max_digits=2, null=True,
+                                             validators=[django.core.validators.MinValueValidator(1),
+                                                         django.core.validators.MaxValueValidator(5)])),
+                ('university',
+                 models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, to='AcadeMeData.university')),
             ],
         ),
         migrations.CreateModel(
