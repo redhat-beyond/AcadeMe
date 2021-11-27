@@ -82,7 +82,7 @@ class Degree(models.Model):
         """
         Returns the name of all possible degrees in the database.
         """
-        
+
         return self.name
 
     @staticmethod
@@ -90,23 +90,23 @@ class Degree(models.Model):
         """
         Creates a Degree object.
         """
-        
+
         degree = Degree(degree_id=degree_id, name=name, universities=universities, description=description)
         degree.save()
         return degree
-       
+
     def get_name(self):
         """
         Returns the name of a specific degree.
         """
-        
+
         return self.name
 
     def get_description(self):
         """
         Returns the description of a specific degree.
         """
-        
+
         return self.description
 
     def get_universities(self):
@@ -114,7 +114,7 @@ class Degree(models.Model):
         Returns a string of all universities that offers this degree.
         * will be used later to determine if a university offers the specific degree.
         """
-        
+
         return self.universities
 
 
@@ -175,26 +175,24 @@ class Professor(models.Model):
     def get_description(self):
         return self.description
 
+
 class Course(models.Model):
     course_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)], default=0)
     name = models.CharField(max_length=100)  # Name of the course
     degree = models.ForeignKey(Degree, on_delete=models.RESTRICT)
-    elective = models.BooleanField(default=False) # False for mandatory, True for elective
-    description = models.TextField(null=True, blank=True) #Decribes the course
+    elective = models.BooleanField(default=False)  # False for mandatory, True for elective
+    description = models.TextField(null=True, blank=True)  # Decribes the course
     professor = models.ForeignKey(Professor, on_delete=models.RESTRICT)
 
     # Fields for a rating system we will implement later:
     # The rating of this course.
-    rating = models.DecimalField(
-        max_digits=2, decimal_places=1, validators=
-        [MinValueValidator(1), MaxValueValidator(5)],
-        blank=True, null=True)
+    rating = models.DecimalField(max_digits=2, decimal_places=1,
+                                 validators=[MinValueValidator(1), MaxValueValidator(5)], blank=True, null=True)
     # Counter for the number of rates, will be used later to calculate the rating.
     sum_rates = models.IntegerField(
         validators=[MinValueValidator(0)], default=0)
 
-
-    #methods
+    # methods
     def __str__(self):
         """
         Returns the name of all possible courses in the database.
@@ -207,11 +205,11 @@ class Course(models.Model):
         Creates a Course object.
         """
         course = Course(course_id=course_id,
-                              name=name,
-                              degree=degree,
-                              elective=elective,
-                              description=description,
-                              professor=professor)
+                        name=name,
+                        degree=degree,
+                        elective=elective,
+                        description=description,
+                        professor=professor)
         course.save()
         return course
 

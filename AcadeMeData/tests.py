@@ -53,10 +53,12 @@ class TestDegreeModel:
         degree.save()
         return degree
 
-    def test_create_degree(self, degree_id=1, name="History", universities="Reichman University, Ben Gurion University",
-                                      description="Learn about historic events and their influences on the world"):
-        degree_test = Degree.create_degree(degree_id=degree_id, name=name, universities=universities, description=description)
-        assert "Reichman University" in degree_test.universities 
+    def test_create_degree(self, degree_id=1, name="History",
+                           universities="Reichman University, Ben Gurion University",
+                           description="Learn about historic events and their influences on the world"):
+        degree_test = Degree.create_degree(degree_id=degree_id, name=name, universities=universities,
+                                           description=description)
+        assert "Reichman University" in degree_test.universities
         assert degree_test.name == "History"
 
 
@@ -69,7 +71,7 @@ class TestCourseModel:
         degree_test = TestDegreeModel.degree_example(self)
         course_test = Course.create_course(course_id=course_id, name=name, degree=degree_test, elective=elective,
                                            description=description, professor=professor_test)
-        assert course_test.is_elective() == True
+        assert course_test.is_elective()
         assert "historic" in course_test.description
 
 

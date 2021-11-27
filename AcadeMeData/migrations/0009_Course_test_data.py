@@ -1,5 +1,6 @@
 from django.db import migrations, transaction
 
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -23,7 +24,7 @@ class Migration(migrations.Migration):
         ]
         with transaction.atomic():
             for id, name, degree, elective, description, professor in test_data:
-                Course(course_id=id, name=course, elective=elective,
+                Course(course_id=id, name=name, elective=elective,
                        description=description, professor=professor).save()
 
     operations = [
