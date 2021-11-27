@@ -137,20 +137,22 @@ class MessageBoards(models.Model):
     def __str__(self):
         return self.id
 
+
 class Messages(models.Model):
     msgID = models.IntegerField(primary_key=True)
-    userID = models.ForeignKey(User, on_delete=models.CASCADE,default=0)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE, default=0)
     text = models.TextField(max_length=300)
     msgDate = models.DateTimeField(default=timezone.now)
 
     def get_msg(self):
         return self.msgID
 
-    def create_message(id,user,text):
+    def create_message(id, user, text):
         with transaction.atomic():
-            msg=Messages(msgID=id, userID=user,text=text)
+            msg = Messages(msgID=id, userID=user, text=text)
             msg.save()
             return msg
+
 
 class MessageTags(models.Model):
     id = models.IntegerField(primary_key=True, default=0)
@@ -158,4 +160,4 @@ class MessageTags(models.Model):
     userID = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-         return self.id
+        return self.id
