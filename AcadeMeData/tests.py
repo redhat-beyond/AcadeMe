@@ -4,6 +4,7 @@ from AcadeMeData.models import User, Professor, University
 
 @pytest.mark.django_db
 class TestUserModel:
+    @pytest.fixture
     def user_example(self):
         user_data = {'username': "username", 'password': "password", 'email': "user@example.com", 'type': "S",
                      'university': "RU",
@@ -35,6 +36,7 @@ class TestUserModel:
 
 @pytest.mark.django_db
 class TestUniversityModel:
+    @pytest.fixture
     def generate_university(self, university_id=1, name='Reichman University', location="Herzlia",
                             description="A nice place"):
         university = University(university_id=university_id, name=name, location=location,
@@ -59,6 +61,7 @@ class TestUniversityModel:
 
 @pytest.mark.django_db
 class TestProfessorModel:
+    @pytest.fixture
     def generate_professor(self, professor_id=1, name="DR Arnold Schwarzenegger", university=None,
                            description="A cool guy who looked familliar", rate=4.5, university_id=1,
                            uni_name='Reichman University', location="Herzlia",
