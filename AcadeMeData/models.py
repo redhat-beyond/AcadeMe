@@ -1,7 +1,8 @@
-from django.db import models
+from django.db import models, transaction
 from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils import timezone
 
 
 class DEGREECHOICES(models.TextChoices):
@@ -62,14 +63,6 @@ class User(models.Model):
             return None
         return user
 
-    """    def get_user(username):
-        try:
-            user = DjangoUser.objects.get(username=username)
-        except User.DoesNotExist:
-            return False
-        return user
-    """
-
 
 class University(models.Model):
     university_id = models.IntegerField(
@@ -115,7 +108,7 @@ class Professor(models.Model):
         return professor
 
     @staticmethod
-    def get_proffesor(name):
+    def get_professor(name):
         try:
             professor = Professor.objects.get(name=name)
         except professor.DoesNotExist:
@@ -127,3 +120,53 @@ class Professor(models.Model):
 
     def get_description(self):
         return self.description
+
+
+class MessageBoards(models.Model):
+    id = models.IntegerField(primary_key=True)
+    courseName = models.TextField(max_length=30)
+
+    def __str__(self):
+        return self.id
+
+    @staticmethod
+    def create_msgboard(id, courseName):
+        msgboard = MessageBoards(id=id, courseName=courseName)
+        msgboard.save()
+        return msgboard
+
+    @staticmethod
+    def get_msgboard_by_id(id):
+        return MessageBoards.objects.get(id=id)
+
+
+class Messages(models.Model):
+    msgID = models.IntegerField(primary_key=True)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE, default=0)
+    text = models.TextField(max_length=300)
+    msgDate = models.DateTimeField(default=timezone.now)
+
+    def get_msg(self):
+        return self.msgID
+
+    def create_message(id, user, text):
+        with transaction.atomic():
+            msg = Messages(msgID=id, userID=user, text=text)
+            msg.save()
+            return msg
+
+    @staticmethod
+    def get_msg_by_id(msgID):
+        return Messages.objects.get(msgID=msgID)
+
+
+class MessageTags(models.Model):
+    id = models.IntegerField(primary_key=True, default=0)
+    msgID = models.ForeignKey(Messages, on_delete=models.CASCADE)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.id
+
+    def get_msg_tag(id):
+        return MessageTags.objects.get(id=id)
