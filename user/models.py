@@ -38,7 +38,7 @@ class User(models.Model):
     @staticmethod
     def del_user(self):
         try:
-            self.delete()
+            self.user.delete()
         except self.DoesNotExist:
             return False
         return True
