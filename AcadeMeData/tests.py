@@ -92,13 +92,14 @@ class TestProfessorModel:
 
 @pytest.mark.django_db
 class TestMessageBoardModel:
+    @pytest.fixture
     def generate_msgboard(self, id=1, courseName="Linear Algebra"):
         msgboard = MessageBoards(id=id, courseName=courseName)
         msgboard.save()
         return msgboard
 
-    def test_get_msgboard(self, id=1, courseName="Linear Algebra"):
-        msgboard = TestMessageBoardModel.generate_msgboard(self, id, courseName)
+    def test_get_msgboard(self, generate_msgboard):
+        msgboard = generate_msgboard
         msgboard_test = MessageBoards.get_msgboard_by_id(1)
         assert msgboard_test == msgboard
         assert isinstance(msgboard_test, MessageBoards)
@@ -106,8 +107,9 @@ class TestMessageBoardModel:
 
 @pytest.mark.django_db
 class TestMessagesModel:
+    @pytest.fixture
     def user_example(self):
-        user_data = {'username': "username22", 'password': "password", 'email': "user@example.com", 'type': "S",
+        user_data = {'username': "username2212", 'password': "password", 'email': "user@example.com", 'type': "S",
                      'university': "RU",
                      'degree': "CS"}
         user = User.create_user(*user_data)
@@ -118,33 +120,31 @@ class TestMessagesModel:
         message.save()
         return message
 
-    def test_get_msg(self, msgID=1, userID=None, text='This is a test message yo'):
-        userID = self.user_example()
+    def test_get_msg(self, user_example, msgID=1, userID=None, text='This is a test message yo'):
+        userID = user_example
         msg = TestMessagesModel.generate_message(self, msgID, userID, text)
         msg_test = Messages.get_msg_by_id(1)
         assert msg_test == msg
         assert isinstance(msg_test, Messages)
 
-    def test_create_msg(self, msgID=9, text='I am testinggggg'):
-        user_data = {'username': "username221", 'password': "password", 'email': "user@example.com", 'type': "S",
-                     'university': "RU",
-                     'degree': "CS"}
-        user = User.create_user(*user_data)
+    def test_create_msg(self, user_example, msgID=9, text='I am testinggggg'):
+        user = user_example
         msg = Messages.create_message(msgID, user, text)
         assert isinstance(msg, Messages)
 
 
 @pytest.mark.django_db
 class TestMessageTagsModel:
+    @pytest.fixture
     def user_example(self):
-        user_data = {'username': "username22", 'password': "password", 'email': "user@example.com", 'type': "S",
+        user_data = {'username': "username2212", 'password': "password", 'email': "user@example.com", 'type': "S",
                      'university': "RU",
                      'degree': "CS"}
         user = User.create_user(*user_data)
         return user
 
-    def test_get_msg_tag(self, id=1, msgID=None):
-        userID = self.user_example()
+    def test_get_msg_tag(self, user_example, id=1, msgID=None):
+        userID = user_example
         msgID = Messages.create_message(id, userID, text='bla bla')
         tag = MessageTags(id, msgID, userID)
         assert isinstance(tag, MessageTags)
