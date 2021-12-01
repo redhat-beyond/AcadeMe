@@ -87,27 +87,12 @@ class Degree(models.Model):
         degree.save()
         return degree
 
-    def get_name(self):
+    @staticmethod
+    def get_degree_by_name(name):
         """
-        Returns the name of a specific degree.
+        Gets us the Degree object with input 'name' as its name.
         """
-
-        return self.name
-
-    def get_description(self):
-        """
-        Returns the description of a specific degree.
-        """
-
-        return self.description
-
-    def get_universities(self):
-        """
-        Returns a string of all universities that offers this degree.
-        * will be used later to determine if a university offers the specific degree.
-        """
-
-        return self.universities
+        return Degree.objects.get(name=name)
 
 
 class University(models.Model):
