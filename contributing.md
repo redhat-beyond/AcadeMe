@@ -38,7 +38,7 @@ People love thorough bug reports. I'm not even kidding.
 
 We have set up Flake8 to ensure that our style guides are being followed.
 
-### Submit finished and well-tested pull requests
+### Guidelines for PR reviews:
 
 Please do not submit pull requests that are still a work in progress. Pull requests should be thoroughly tested and ready to merge before they are submitted.
 
