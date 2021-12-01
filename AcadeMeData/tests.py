@@ -106,4 +106,4 @@ class TestDegreeModel:
 
         assert "Reichman University" in degree.universities
         assert "History" in degree.name
-        assert "historics" in degree.description
+        assert "historic" in degree.description
