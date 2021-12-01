@@ -1,5 +1,5 @@
 import pytest
-from AcadeMeData.models import User, Professor, University, Degree, Course
+from AcadeMeData.models import User, Professor, University, Degree
 
 
 @pytest.mark.django_db
@@ -92,29 +92,19 @@ class TestProfessorModel:
 
 @pytest.mark.django_db
 class TestDegreeModel:
-    def degree_example(self):
-        degree = Degree(degree_id=1, name='History', universities="Reichman University",
-                        description="Learn about historic events and their influences on the world")
+    @pytest.fixture
+    def generate_degree(self, degree_id=1, name='History', universities="Ben Gurion University, Reichman University",
+                        description="Learn about historic events and their influences on the world"):
+        degree = Degree(degree_id=degree_id, name=name, universities=universities,
+                                description=description)
         degree.save()
         return degree
 
-    def test_create_degree(self, degree_id=1, name="History",
-                           universities="Reichman University, Ben Gurion University",
-                           description="Learn about historic events and their influences on the world"):
-        degree_test = Degree.create_degree(degree_id=degree_id, name=name, universities=universities,
-                                           description=description)
-        assert "Reichman University" in degree_test.universities
-        assert degree_test.name == "History"
+    def test_create_degree(self):
+        degree = create_degree(self, degree_id=1, name="History",
+                               universities="Reichman University, Ben Gurion University",
+                               description="Learn about historic events and their influences on the world")
 
-
-@pytest.mark.django_db
-class TestCourseModel:
-    def test_create_course(self, course_id=1, name="History of Countries", degree=None, elective=True,
-                           description="Learn about historic events and their influences on countries",
-                           professor=None):
-        professor_test = TestProfessorModel.generate_professor(self)
-        degree_test = TestDegreeModel.degree_example(self)
-        course_test = Course.create_course(course_id=course_id, name=name, degree=degree_test, elective=elective,
-                                           description=description, professor=professor_test)
-        assert course_test.is_elective()
-        assert "historic" in course_test.description
+        assert "Reichman University" in degree.get_universities()
+        assert "History" in degree.get_name
+        assert "historics" in degree.get_description()
