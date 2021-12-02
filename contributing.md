@@ -40,7 +40,7 @@ We have set up Flake8 to ensure that our style guides are being followed.
 
 ### Guidelines for PR reviews:
 
-Please do not submit pull requests that are still a work in progress. Pull requests should be thoroughly tested and ready to merge before they are submitted.
+In case of work in progress PR, make sure it is in Draft state, under the reviewers section in github ui. Pull requests should be thoroughly tested and ready to merge before they are submitted.
 
 Tests should be be part of the PR in case of new features or capabilities proposed in the PR.
 
