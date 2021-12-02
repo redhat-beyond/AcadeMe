@@ -8,7 +8,7 @@ class TestDegreeModel:
     def generate_degree(self, degree_id=1, name='History', universities="Ben Gurion University, Reichman University",
                         description="Learn about historic events and their influences on the world"):
         degree = Degree.create_degree(degree_id=degree_id, name=name, universities=universities,
-                               description=description)
+                                      description=description)
         degree.save()
         return degree
 
