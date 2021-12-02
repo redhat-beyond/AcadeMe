@@ -92,7 +92,11 @@ class Degree(models.Model):
         """
         Gets us the Degree object with input 'name' as its name.
         """
-        return Degree.objects.get(name=name)
+        try:
+            degree = Degree.objects.get(name=name)
+        except Degree.DoesNotExist:
+            return None
+        return degree
 
 
 class University(models.Model):
