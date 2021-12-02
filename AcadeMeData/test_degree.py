@@ -13,10 +13,10 @@ class TestDegreeModel:
         return degree
 
     def test_create_degree(self):
-        degree = Degree.create_degree(self, degree_id=1, name="History",
-                               universities="Reichman University, Ben Gurion University",
-                               description="Learn about historic events and their influences on the world")
+        degree = Degree.create_degree(degree_id=1, name="History",
+                                      universities="Reichman University, Ben Gurion University",
+                                      description="Learn about historic events and their influences on the world")
 
-        assert "Reichman University" in degree.get_universities()
-        assert "History" in degree.get_name
-        assert "historic" in degree.get_description()
+        assert "Reichman University" in degree.universities
+        assert "History" in degree.name
+        assert "historic" in degree.description
