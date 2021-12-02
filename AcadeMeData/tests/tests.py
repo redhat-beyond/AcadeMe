@@ -1,5 +1,9 @@
 import pytest
+<<<<<<< HEAD:AcadeMeData/tests/tests.py
 from AcadeMeData.models import User, Professor, University, MessageBoards, Messages, MessageTags
+=======
+from AcadeMeData.models import User, Professor, University
+>>>>>>> 74349c9 (Seperated the tests.py file into 3 files each one contains Tests for each model class of messages. Also all of the tests are inside a new folder called Tests.):AcadeMeData/tests.py
 
 
 @pytest.mark.django_db
@@ -88,6 +92,7 @@ class TestProfessorModel:
         professor = Professor.get_professor(name)
         assert professor.get_name() == professor_for_example.name
         assert professor.get_description() == professor_for_example.description
+<<<<<<< HEAD:AcadeMeData/tests/tests.py
 
 
 @pytest.mark.django_db
@@ -148,3 +153,5 @@ class TestMessageTagsModel:
         msgID = Messages.create_message(id, userID, text='bla bla')
         tag = MessageTags(id, msgID, userID)
         assert isinstance(tag, MessageTags)
+=======
+>>>>>>> 74349c9 (Seperated the tests.py file into 3 files each one contains Tests for each model class of messages. Also all of the tests are inside a new folder called Tests.):AcadeMeData/tests.py
