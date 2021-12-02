@@ -12,9 +12,8 @@ class TestDegreeModel:
         degree.save()
         return degree
 
-    def test_create_degree(self):
-        degree_1 = self.generate_degree()
-        degree_2 = Degree.get_degree_by_name("History")
+    def test_create_degree(self, generate_degree, name="History"):
+        degree = Degree.get_degree_by_name(name)
 
-        assert degree_1.name == degree_2.name
-        assert degree_1.universities == degree_2.universities
+        assert degree.name == generate_degree.name
+        assert degree.universities == generate_degree.universities
