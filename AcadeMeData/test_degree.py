@@ -17,4 +17,4 @@ class TestDegreeModel:
         degree_2 = Degree.get_degree_by_name("History")
 
         assert degree_1 == degree_2
-        asset degree_1.name == "History"
+        assert degree_1.name == "History"
