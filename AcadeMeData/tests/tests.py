@@ -1,5 +1,5 @@
 import pytest
-from AcadeMeData.models import User, Professor, University, MessageBoards, Messages, MessageTags
+from AcadeMeData.models import User, Professor, University
 
 
 @pytest.mark.django_db
