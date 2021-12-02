@@ -89,10 +89,10 @@ class University(models.Model):
 class Professor(models.Model):
     professor_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)])
     name = models.CharField(max_length=100)
-    university = models.ForeignKey(University, on_delete=models.RESTRICT)  # , related_name='%(class)s_something')
+    university = models.ForeignKey(University, on_delete=models.RESTRICT)
     description = models.TextField(null=True, blank=True)
     rate = models.DecimalField(max_digits=2, decimal_places=1, validators=[MinValueValidator(1), MaxValueValidator(5)],
-                               blank=True, null=True)  # average professor rating, starts as null
+                               blank=True, null=True)
 
     def __str__(self):
         return self.name
