@@ -13,7 +13,7 @@ class TestDegreeModel:
         return degree
 
     def test_create_degree(self, generate_degree):
-        degree = create_degree(degree_id=1, name='History', universities="Ben Gurion University, Reichman University",
+        degree = Degree.create_degree(degree_id=1, name='History', universities="Ben Gurion University, Reichman University",
                                description="Learn about historic events and their influences on the world")
 
         assert degree.name == generate_degree.name
