@@ -62,13 +62,41 @@ class User(models.Model):
             return None
         return user
 
-    """    def get_user(username):
+
+class Degree(models.Model):
+    degree_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)], default=0)
+    name = models.CharField(max_length=100)
+    universities = models.TextField(null=True, blank=True)  # Format should be "Uni1, Uni2, Uni3,..."
+    description = models.TextField(null=True, blank=True)  # Describes the degree
+
+    # methods
+    def __str__(self):
+        """
+        Returns the name of all possible degrees in the database.
+        """
+
+        return self.name
+
+    @staticmethod
+    def create_degree(degree_id, name, universities, description):
+        """
+        Creates a Degree object.
+        """
+
+        degree = Degree(degree_id=degree_id, name=name, universities=universities, description=description)
+        degree.save()
+        return degree
+
+    @staticmethod
+    def get_degree_by_name(name):
+        """
+        Gets us the Degree object with input 'name' as its name.
+        """
         try:
-            user = DjangoUser.objects.get(username=username)
-        except User.DoesNotExist:
-            return False
-        return user
-    """
+            degree = Degree.objects.get(name=name)
+        except Degree.DoesNotExist:
+            return None
+        return degree
 
 
 class University(models.Model):
@@ -115,7 +143,7 @@ class Professor(models.Model):
         return professor
 
     @staticmethod
-    def get_proffesor(name):
+    def get_professor(name):
         try:
             professor = Professor.objects.get(name=name)
         except professor.DoesNotExist:
