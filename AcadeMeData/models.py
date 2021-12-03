@@ -12,11 +12,6 @@ class DEGREECHOICES(models.TextChoices):
     Unknown = 'UN', 'Unknown'
 
 
-class TYPECHOICES(models.TextChoices):
-    Student = 'S', 'Student'
-    Expert = 'E', 'Expert'
-
-
 class UNIVERSITYCHOICES(models.TextChoices):
     Reichman_University = 'RU', 'Reichman University'
     Hebrew_University = 'HU', 'Hebrew University'
@@ -30,17 +25,15 @@ class User(models.Model):
     # Goto: https://docs.djangoproject.com/en/3.2/ref/contrib/auth/ for API
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
     # name = models.CharField(max_length=30, default="")  # we got the name\username from the built in user model django
-    type = models.CharField(max_length=1, choices=TYPECHOICES.choices, default=TYPECHOICES.Student)
     university = models.CharField(max_length=2, choices=UNIVERSITYCHOICES.choices, default=UNIVERSITYCHOICES.Unknown)
     degree = models.CharField(max_length=2, choices=DEGREECHOICES.choices, default=DEGREECHOICES.Unknown)
 
     @staticmethod
-    def create_user(username, email, password, type, university, degree):
+    def create_user(username, email, password, university, degree):
         django_user = DjangoUser.objects.create_user(username=username,
                                                      email=email,
                                                      password=password)
         user = User(user=django_user,
-                    type=type,
                     university=university,
                     degree=degree)
         user.save()
