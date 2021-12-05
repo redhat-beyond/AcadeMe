@@ -14,13 +14,13 @@ def generate_professor(generate_university, professor_id=2, name="DR Arnold Schw
     return professor
 
 
-@pytest.fixture
-def generate_university(university_id=3, name='The Hebrew University', location="Jerusalem",
-                        description="good vibes"):
-    university = University(university_id=university_id, name=name, location=location,
-                            description=description)
-    university.save()
-    return university
+# @pytest.fixture
+# def generate_university(university_id=3, name='The Hebrew University', location="Jerusalem",
+#                         description="good vibes"):
+#     university = University(university_id=university_id, name=name, location=location,
+#                             description=description)
+#     university.save()
+#     return university
 
 
 @pytest.mark.django_db
