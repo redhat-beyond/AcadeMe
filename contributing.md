@@ -29,9 +29,10 @@ People love thorough bug reports. I'm not even kidding.
 <img align="right" width="250" height="150" src="https://theindecisiveeejit.files.wordpress.com/2014/12/size-matters.jpg">
 
 - Make SMALLER pull requests. 
-- Write useful descriptions and titles.
+- Write useful descriptions and titles. 
+    Example: "[Frontend] Login Page UI" 
+             "I have made several changes to the Login Page interface: 1.'forgot password' checkbox 2.Logo alignment"
 - Have on-point commit messages.
-- Add comments on your pull request to help guide the reviewer.
 
 
 ### Follow the Code Style Guidelines
@@ -46,3 +47,4 @@ Tests should be be part of the PR in case of new features or capabilities propos
 
 PR will be reviewed with the following prerequisite:
 PR checks are passed with SUCCESS.
+All the pull requests guidelines are enforced.
