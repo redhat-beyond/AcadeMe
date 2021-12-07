@@ -36,7 +36,7 @@ People love thorough bug reports. I'm not even kidding.
              2.Logo alignment"``
 - Have on-point commit messages.
 - When submiting a PR link the relevant issue to it in the first PR message.  
-  [Like so](https://github.com/redhat-beyond/AcadeMe/issues/78)
+  Closes #78
 
 
 ### Follow the Code Style Guidelines
