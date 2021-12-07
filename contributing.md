@@ -20,6 +20,7 @@ Great Bug Reports tend to have:
 - Give sample code if you can.
 - What actually happens.
 - Make it visual - use photos and screenshots if you can.
+- If the issue represents a feature needed to be implemented, write acceptance criteria for it!
 
 People love thorough bug reports. I'm not even kidding.
 
@@ -30,7 +31,7 @@ People love thorough bug reports. I'm not even kidding.
 
 - Make SMALLER pull requests. 
 - Write useful descriptions and titles.  
-    ``Example: "[Frontend] Login Page UI" 
+    Example: ``"[Frontend] Login Page UI" 
              "I have made several changes to the Login Page interface: 1.'forgot password'                      checkbox
              2.Logo alignment"``
 - Have on-point commit messages.
