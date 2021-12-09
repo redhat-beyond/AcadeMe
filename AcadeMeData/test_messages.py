@@ -4,7 +4,7 @@ from AcadeMeData.models import Messages, User
 
 @pytest.fixture
 def user_example():
-    user_data = {'username': "username2212", 'password': "password", 'email': "user@example.com", 'type': "S",
+    user_data = {'username': "username2212", 'password': "password", 'email': "user@example.com",
                  'university': "RU",
                  'degree': "CS"}
     user = User.create_user(*user_data)
