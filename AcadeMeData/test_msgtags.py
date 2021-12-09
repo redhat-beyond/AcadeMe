@@ -20,7 +20,7 @@ def generate_message(user_example, msgID=1, text='This is a test message yo'):
 
 
 @pytest.fixture
-def generate_msgtags(id, generate_message, user_example):
+def generate_msgtags(id=1):
     tag = MessageTags(id, generate_message, user_example)
     return tag
 
@@ -29,6 +29,6 @@ def generate_msgtags(id, generate_message, user_example):
 class TestMessageTagsModel:
     def test_get_msg_tag(self, generate_msgtags):
         tag = generate_msgtags
-        tag_test = MessageTags.test_get_msg_tag(1)
+        tag_test = MessageTags.get_msg_tag(1)
         assert tag == tag_test
         assert isinstance(tag, MessageTags)
