@@ -11,10 +11,24 @@ def user_example():
     return user
 
 
+@pytest.fixture
+def generate_message(user_example, msgID=1, text='This is a test message yo'):
+    user = user_example
+    message = Messages(msgID=msgID, userID=user, text=text)
+    message.save()
+    return message
+
+
+@pytest.fixture
+def generate_msgtags(id, generate_message, user_example):
+    tag = MessageTags(id, generate_message, user_example)
+    return tag
+
+
 @pytest.mark.django_db
 class TestMessageTagsModel:
-    def test_get_msg_tag(self, user_example, id=1, msgID=None):
-        userID = user_example
-        msgID = Messages.create_message(id, userID, text='bla bla')
-        tag = MessageTags(id, msgID, userID)
+    def test_get_msg_tag(self, generate_msgtags):
+        tag = generate_msgtags
+        tag_test = MessageTags.test_get_msg_tag(1)
+        assert tag == tag_test
         assert isinstance(tag, MessageTags)
