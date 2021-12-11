@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     def generate_data(apps, schema_editor):
         from AcadeMeData.models import Course, Degree, Professor, University
-        
+
         university = University(university_id=1, name="Reichman University", location='Herzliya',
                                 description='Very nice university')
         university.save()
@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         degree = Degree(degree_id=2, name="Computer Science", universities="Ben Gurion University",
                         description="Learn about how to write awesome code!")
         degree.save()
-        
+
         professor = Professor(professor_id=3, name="Shimon Shocken", university=university,
                               description="Nice guy", rate=1)
         professor.save()

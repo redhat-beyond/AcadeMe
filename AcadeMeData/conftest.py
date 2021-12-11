@@ -10,6 +10,7 @@ def generate_university(university_id=5, name='The Technion', location="Haifa",
     university.save()
     return university
 
+
 @pytest.fixture
 def generate_degree(degree_id=1, name='History', universities="Ben Gurion University, Reichman University",
                     description="Learn about historic events and their influences on the world"):
@@ -17,6 +18,7 @@ def generate_degree(degree_id=1, name='History', universities="Ben Gurion Univer
                                   description=description)
     degree.save()
     return degree
+
 
 @pytest.fixture
 def generate_professor(generate_university, professor_id=2, name="DR Arnold Schwarzenegger",
