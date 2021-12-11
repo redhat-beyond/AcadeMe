@@ -1,0 +1,47 @@
+.navbar {
+    background-color: #4e9fc8;
+}
+
+.nav-link {
+    color: white;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.review-btn {
+    color: white;
+    border: 1px solid white;
+    margin-left: 7px;
+    width: 140px;
+}
+
+.app-title {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.navbar-nav {
+    align-items: center;
+}
+
+.main-container {
+    height: 88vh;
+    background-color: #E4E4E4;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.course-search {
+    width: 300px;
+}
+
+li {
+    list-style: none
+}
