@@ -1,5 +1,5 @@
 import pytest
-from AcadeMeData.models import University
+from AcadeMeData.models import University, Degree, Professor
 
 
 @pytest.fixture
@@ -9,3 +9,22 @@ def generate_university(university_id=5, name='The Technion', location="Haifa",
                             description=description)
     university.save()
     return university
+
+@pytest.fixture
+def generate_degree(degree_id=1, name='History', universities="Ben Gurion University, Reichman University",
+                    description="Learn about historic events and their influences on the world"):
+    degree = Degree.create_degree(degree_id=degree_id, name=name, universities=universities,
+                                  description=description)
+    degree.save()
+    return degree
+
+@pytest.fixture
+def generate_professor(generate_university, professor_id=2, name="DR Arnold Schwarzenegger",
+                       description="A cool guy who looked familiar", rate=4.5):
+    university = generate_university
+    professor = Professor.create_professor(professor_id=professor_id,
+                                           name=name,
+                                           university=university,
+                                           description=description,
+                                           rate=rate)
+    return professor
