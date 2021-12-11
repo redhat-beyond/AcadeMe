@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from AcadeMe import views
+from AcadeMeData import views as user_views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.landingPage,  name='landing_page')
+    path('register/', user_views.register, name='register'),
     ]
