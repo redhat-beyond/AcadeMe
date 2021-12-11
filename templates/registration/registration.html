@@ -1,0 +1,115 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AcadeMe</title>
+    <link rel="stylesheet" href="{%  static  'css/landingStyle.css'  %}" />
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+          <div class="col-md-5">
+            <img
+              src="{%  static   'img/logo.jpg' %}"
+              style="width: 270%; height: 260%"
+              alt="home"
+            />
+          </div>
+        </div>
+
+        <!-- Login Form -->
+        <form>
+          <input
+            type="text"
+            id="login"
+            class="fadeIn second"
+            name="login"
+            placeholder="Choose Username"
+          />
+          <input
+            type="text"
+            id="password"
+            class="fadeIn third"
+            name="login"
+            placeholder="E-Mail"
+          />
+          <input
+            type="text"
+            id="password"
+            class="fadeIn fourth"
+            name="login"
+            placeholder="Choose Password"
+          />
+          <input
+            type="text"
+            id="password"
+            class="fadeIn fourth"
+            name="login"
+            placeholder="Confirm Password"
+          />
+          <div class="justify-content-center">
+            <select
+              class="fadeIn fourth"
+              aria-label="choose-university"
+              id="selectContent"
+            >
+              <option selected>Choose University</option>
+              <option value="1">Reichman University</option>
+              <option value="2">Hebrew University of Jerusalem</option>
+              <option value="3">Ben Gurion University</option>
+              <option value="4">Tel-Aviv University</option>
+              <option value="5">Technion University</option>
+            </select>
+
+            <select
+              class="fadeIn fourth"
+              aria-label="choose-degree"
+              id="selectContent"
+            >
+              <option selected>Choose Degree</option>
+              <option value="1">Computer Science</option>
+              <option value="2">Psychology</option>
+              <option value="3">Business Administration</option>
+              <option value="4">Law</option>
+              <option value="5">Sustainability</option>
+            </select>
+          </div>
+          <input
+            type="submit"
+            class="fadeIn fifth mt-2 mb-2"
+            value="Register"
+          />
+        </form>
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+          <a class="underlineHover" href="{% url 'login' %}"
+            >Already a user? Log in here</a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
