@@ -205,7 +205,7 @@ class Course(models.Model):
     course_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)], default=0)
     name = models.CharField(max_length=100)
     degree = models.ForeignKey(Degree, on_delete=models.RESTRICT)
-    mandatory = models.BooleanField(default=True)  # true for mandatory, false for elective
+    elective = models.BooleanField(default=False)  # False for mandatory, True for elective
     description = models.TextField(null=True, blank=True)
     professor = models.ForeignKey(Professor, on_delete=models.RESTRICT)
 
