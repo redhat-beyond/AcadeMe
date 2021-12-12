@@ -203,7 +203,7 @@ class MessageTags(models.Model):
 
 class Course(models.Model):
     course_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)], default=0)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     degree = models.ForeignKey(Degree, on_delete=models.RESTRICT)
     elective = models.BooleanField(default=False)  # False for mandatory, True for elective
     description = models.TextField(null=True, blank=True)
