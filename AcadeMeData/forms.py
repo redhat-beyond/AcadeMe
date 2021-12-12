@@ -1,7 +1,6 @@
 from django import forms
-from django.db import models
 from django.contrib.auth.forms import UserCreationForm
-from AcadeMeData.models import User, DjangoUser, Degree, University, UNIVERSITYCHOICES, DEGREECHOICES
+from AcadeMeData.models import User, DjangoUser, Degree, University
 
 
 class UserRegistrationForm(UserCreationForm):
