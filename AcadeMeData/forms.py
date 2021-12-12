@@ -1,11 +1,12 @@
 from django import forms
+from django.db import models
 from django.contrib.auth.forms import UserCreationForm
-from AcadeMeData.models import User, DjangoUser
+from AcadeMeData.models import User, DjangoUser, Degree, University, UNIVERSITYCHOICES, DEGREECHOICES
 
 
 class UserRegistrationForm(UserCreationForm):
-    university = forms.Field(required=True)
-    degree = forms.Field(required=True)
+    university = forms.ModelChoiceField(University.objects, required=False)
+    degree = forms.ModelChoiceField(Degree.objects, required=False)
     email = forms.EmailField(required=True)
 
     class Meta1:
