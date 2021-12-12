@@ -203,26 +203,11 @@ class MessageTags(models.Model):
 
 class Course(models.Model):
     course_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)], default=0)
-    name = models.CharField(max_length=100)  # Name of the course
+    name = models.CharField(max_length=100)
     degree = models.ForeignKey(Degree, on_delete=models.RESTRICT)
-    elective = models.BooleanField(default=False)  # False for mandatory, True for elective
-    description = models.TextField(null=True, blank=True)  # Decribes the course
+    mandatory = models.BooleanField(default=True)  # true for mandatory, false for elective
+    description = models.TextField(null=True, blank=True)
     professor = models.ForeignKey(Professor, on_delete=models.RESTRICT)
-
-    # Fields for a rating system we will implement later:
-    # The rating of this course.
-    rating = models.DecimalField(max_digits=2, decimal_places=1,
-                                 validators=[MinValueValidator(1), MaxValueValidator(5)], blank=True, null=True)
-    # Counter for the number of rates, will be used later to calculate the rating.
-    sum_rates = models.IntegerField(
-        validators=[MinValueValidator(0)], default=0)
-
-    # methods
-    def __str__(self):
-        """
-        Returns the name of all possible courses in the database.
-        """
-        return self.course
 
     @staticmethod
     def create_course(course_id, name, degree, elective, description, professor):
@@ -245,6 +230,6 @@ class Course(models.Model):
         """
         try:
             course = Course.objects.get(name=name)
+            return course
         except Course.DoesNotExist:
             return None
-        return course

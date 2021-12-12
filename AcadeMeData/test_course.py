@@ -15,7 +15,7 @@ def generate_course(generate_degree, generate_professor, course_id=1, name="Hist
 
 @pytest.mark.django_db
 class TestCourseModel:
-    def test_create_course(self, generate_course, name="History of Countries"):
+    def test_get_course_by_name(self, generate_course, name="History of Countries"):
         course = Course.get_course_by_name(name)
 
         assert course.name == generate_course.name
