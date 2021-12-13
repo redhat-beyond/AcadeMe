@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 
 def app_layout(request):
-    return render(request, 'landing/app_layout.html')
+    return render(request, 'app_layout.html')
 
 
 def homePage(request):
