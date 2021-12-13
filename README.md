@@ -1,4 +1,4 @@
-<img src="https://i.ibb.co/wg0kWGD/Whats-App-Image-2021-11-08-at-5-56-01-PM.jpg" width="650">
+<img src="static/img/academe_logo.png" width="650">
 
 
 # Description
