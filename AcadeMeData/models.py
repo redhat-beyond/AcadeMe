@@ -204,7 +204,7 @@ class MessageTags(models.Model):
 class Course(models.Model):
     course_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)], default=0)
     name = models.CharField(max_length=100, unique=True)
-    degree = models.ManyToManyField(Degree)
+    degree = models.ManyToManyField(Degree, blank=True, null=True, default=NULL)
     mandatory = models.BooleanField(default=False)  # False for elective, True for mandatory
     description = models.TextField(null=True, blank=True)
     professor = models.ForeignKey(Professor, on_delete=models.RESTRICT)
