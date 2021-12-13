@@ -29,8 +29,8 @@ class Migration(migrations.Migration):
              'Learn about the revolution in poetry in 16th century England', professor),
         ]
         with transaction.atomic():
-            for id, name, degree, elective, description, professor in test_data:
-                Course(course_id=id, name=name, degree=degree, elective=elective,
+            for id, name, degree, mandatory, description, professor in test_data:
+                Course(course_id=id, name=name, degree=degree, mandatory=mandatory,
                        description=description, professor=professor).save()
 
     operations = [

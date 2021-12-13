@@ -98,7 +98,7 @@ class Migration(migrations.Migration):
                 ('course_id', models.IntegerField(default=0, primary_key=True, serialize=False,
                                                   validators=[django.core.validators.MinValueValidator(0)])),
                 ('name', models.CharField(max_length=100)),
-                ('elective', models.BooleanField(default=False)),
+                ('mandatory', models.BooleanField(default=False)),
                 ('description', models.TextField(blank=True, null=True)),
                 ('rating', models.DecimalField(blank=True, decimal_places=1, max_digits=2,
                                                null=True, validators=[django.core.validators.MinValueValidator(1),
