@@ -7,8 +7,10 @@ def generate_course(generate_degree, generate_professor, course_id=1, name="Hist
                     mandatory=True, description="Learn about historic events and their influences on countries"):
     professor = generate_professor
     degree = generate_degree
-    course = Course.create_course(course_id=course_id, name=name, degree = degree.set([degree]), mandatory=mandatory,
+    degree_list = [degree]
+    course = Course.create_course(course_id=course_id, name=name, mandatory=mandatory,
                                   description=description, professor=professor)
+    course.degree.add(degree)
     course.save()
     return course
 
