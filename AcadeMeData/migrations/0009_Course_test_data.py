@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
         with transaction.atomic():
             for id, name, degree, mandatory, description, professor in test_data:
                 course = Course(course_id=id, name=name, mandatory=mandatory,
-                       description=description, professor=professor)
+                                description=description, professor=professor)
                 course.degree.add(degree)
                 course.save()
 
