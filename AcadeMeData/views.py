@@ -19,4 +19,4 @@ def register(request):
         form = UserRegistrationForm()
 
     context = {'form': form}
-    return render(request, 'users/login.html', context)
+    return render(request, 'users/register.html', context)
