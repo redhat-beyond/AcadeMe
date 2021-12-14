@@ -19,5 +19,5 @@ from AcadeMe import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.landingPage,  name='landing_page')
+    path('', views.homePage,  name='homepage')
     ]
