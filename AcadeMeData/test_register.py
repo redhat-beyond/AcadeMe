@@ -5,8 +5,8 @@ from AcadeMeData.models import User
 
 @pytest.fixture
 def user_example():
-    user_data = {'username': "daniel", 'email': "user@example.com", 'password1': "D4587450", 'password2': "D4587450",
-                 'university': "Hebrew University", 'degree': "Computer Science"}
+    user_data = {'username': "shlomi", 'email': "user@example.com", 'password1': "daniboy246810",
+                 'password2': "daniboy246810"}
     return user_data
 
 
@@ -14,14 +14,12 @@ def user_example():
 def user_bad_example():
     # username can't be none
     users_data = [
-        {'username': "", 'email': "user@example.com", 'password1': "good password", 'password2': "good password",
-         'university': "RU", 'degree': "CS"},
+        {'username': "", 'email': "user@example.com", 'password1': "good password", 'password2': "good password"},
         # invalid email
-        {'username': "good username", 'email': "user", 'password1': "good password", 'password2': "good password",
-         'university': "RU", 'degree': "CS"},
+        {'username': "good username", 'email': "user", 'password1': "good password", 'password2': "good password"},
         # passqords don't match
         {'username': "good username", 'email': "user@example.com", 'password1': "good password",
-         'password2': "bad password", 'university': "RU", 'degree': "CS"}]
+         'password2': "bad password"}]
     return users_data
 
 
@@ -41,6 +39,6 @@ class TestSignUp:
         form = UserRegistrationForm(data=user_example)
         if form.is_valid():
             user = form.save()
-            assert User.user.objects.filter(pk=user.user.username).exists()
+            assert User.objects.filter(user=user.user).exists()
         else:
             assert False
