@@ -23,10 +23,9 @@ def generate_degree(degree_id=1, name='History', universities="Ben Gurion Univer
 @pytest.fixture
 def generate_professor(generate_university, professor_id=2, name="DR Arnold Schwarzenegger",
                        description="A cool guy who looked familiar", rate=4.5):
-    university = generate_university
     professor = Professor.create_professor(professor_id=professor_id,
                                            name=name,
-                                           university=university,
+                                           university=generate_university,
                                            description=description,
                                            rate=rate)
     return professor
