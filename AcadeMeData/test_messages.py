@@ -13,8 +13,7 @@ def user_example():
 
 @pytest.fixture
 def generate_message(user_example, msgID=1, text='This is a test message yo'):
-    user = user_example
-    message = Messages(msgID=msgID, userID=user, text=text)
+    message = Messages(msgID=msgID, userID=user_example, text=text)
     message.save()
     return message
 
@@ -23,16 +22,13 @@ def generate_message(user_example, msgID=1, text='This is a test message yo'):
 class TestMessagesModel:
 
     def test_get_msg(self, generate_message):
-        msg = generate_message
         msg_test = Messages.get_msg_by_id(1)
-        assert msg_test == msg
+        assert msg_test == generate_message
         assert isinstance(msg_test, Messages)
 
     def test_create_msg(self, generate_message, user_example, msgID=9, text='I am testinggggg'):
-        user = user_example
-        msg = Messages.create_message(msgID, user, text)
-        msg_test = generate_message
+        msg = Messages.create_message(msgID, user_example, text)
         assert isinstance(msg, Messages)
-        assert not msg_test == msg
+        assert not generate_message == msg
         assert "I am" in msg.text
-        assert "This" in msg_test.text
+        assert "This" in generate_message.text
