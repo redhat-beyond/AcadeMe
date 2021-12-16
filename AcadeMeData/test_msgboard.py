@@ -12,8 +12,7 @@ def generate_msgboard(id=1):
 @pytest.mark.django_db
 class TestMessageBoardModel:
     def test_create_msgboard(self, generate_msgboard):
-        board = generate_msgboard
-        assert isinstance(board, MessageBoards)
+        assert isinstance(generate_msgboard, MessageBoards)
 
     def test_get_msgboard(self, generate_msgboard):
         board_test = MessageBoards.get_msgboard_by_id(1)
