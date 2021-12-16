@@ -1,0 +1,22 @@
+.navbar {
+  background-color: #4e9fc8;
+}
+
+.nav-link {
+  color: white;
+  font-size: 20px;
+}
+
+.navbar-nav {
+  align-items: center;
+}
+
+.app-title {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.main-container {
+  height: 88vh;
+  background-color: #e4e4e4;
+}
