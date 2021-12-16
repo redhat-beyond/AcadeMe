@@ -13,17 +13,14 @@ def user_example():
 
 @pytest.fixture
 def generate_message(user_example, msgID=10, text='This is a test message yo'):
-    user = user_example
-    message = Messages(msgID=msgID, userID=user, text=text)
+    message = Messages(msgID=msgID, userID=user_example, text=text)
     message.save()
     return message
 
 
 @pytest.fixture
 def generate_msgtags(user_example, generate_message, id=1):
-    msg = generate_message
-    user = user_example
-    tag = MessageTags.create_msgtag(id, msg, user)
+    tag = MessageTags.create_msgtag(id, generate_message, user_example)
     return tag
 
 
