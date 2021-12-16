@@ -1,58 +1,13 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>AcadeMe</title>
-    <link rel="stylesheet" href="{%  static  'css/landingStyle.css'  %}" />
-    <link
-      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      rel="stylesheet"
-      id="bootstrap-css"
-    />
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  </head>
+<h3>login</h3>
 
-  <body>
-    <link
-      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      rel="stylesheet"
-      id="bootstrap-css"
-    />
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<form action="" method="POST">
+  {% csrf_token %} {% for field in form %}
+  <p>
+    {{ field.label }}: <br />
+    {{ field }}
+  </p>
+  {% endfor %}
+  <button type="submit">Login</button>
+</form>
 
-    <div class="wrapper fadeInDown">
-      <div id="formContent">
-        <!-- Tabs Titles -->
-
-        <!-- Icon -->
-        <div class="fadeIn first">
-          <div class="col-md-5">
-            <img
-              src="{%  static   'img/logo.jpg' %}"
-              style="width: 270%; height: 260%"
-              alt="home"
-            />
-          </div>
-        </div>
-
-        <form action="" method="POST">
-            {% csrf_token %}
-           {% for field in form %}
-            {{ field }}
-            {% endfor %}
-
-          <input type="submit" class="fadeIn fourth mt-2 mb-2" value="Log In" />
-        </form>
-
-        <div id="formFooter">
-          <a class="underlineHover" href="#">Forgot Password?</a>
-          <br>
-          <a>Not an AcadeMe user? Register <a class="underlineHover" href="{% url 'register' %}"
-            > - HERE</a></a
-          >
-      </div>
-    </div>
-  </body>
-</html>
+<p>Don't have an account? <a href="{% url 'register' %}">Signup here</a></p>
