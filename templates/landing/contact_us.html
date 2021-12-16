@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>AcadeMe</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/homePage.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm">
+    <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#collapsibleNavbar"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link app-title" href="/">AcadeMe</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/sign_in">Sign In</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/sign_up">Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contact_us">Contact Us</a>
+            </li>
+        </ul>
+        <ul class="nav-item ml-auto"></ul>
+    </div>
+</nav>
+
+<div class="page-container">
+    <div class="top-container">
+        <div class="top-content">
+            <img class="logo" src="{% static 'img/logo.jpg' %}"/>
+            <div class="top-title">
+                <div>Welcome To AcadeMe.</div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-row bottom-container justify-content-center" style="margin-top: 30px">
+        <div class="flex-col m-5">
+            <h3 class="my-1">Website Developers:</h3>
+            <div>
+                <ol aria-label="Team Members">
+                    <li class="nav-item">
+                <a>Dan Waldman @ daniel.waldman@idc.ac.il</a>
+                    </li>
+                  <li class="nav-item">
+                <a>Dean Civlin @ Dean.civlin@idc.ac.il</a>
+                    </li>
+                  <li class="nav-item">
+                <a>Raz Ashtar @ raz.ashtar@idc.ac.il</a>
+                    </li>
+                  <li class="nav-item">
+                <a>Daniel Itkes @ daniel.itkes@idc.ac.il</a>
+                    </li>
+                  <li class="nav-item">
+                <a>Shaked Hagag @ shaked.hagag@idc.ac.il</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

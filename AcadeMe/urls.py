@@ -19,5 +19,7 @@ from AcadeMe import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.homePage,  name='homepage')
-    ]
+    path('', views.homePage,  name='homepage'),
+    path('contact_us/', views.contact, name='contact_us')
+
+]
