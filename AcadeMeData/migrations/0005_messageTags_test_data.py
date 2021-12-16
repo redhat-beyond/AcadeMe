@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     def generate_msgtagsdata(apps, schema_editor):
         from AcadeMeData.models import User, Messages, MessageTags
-        userrnd1 = User.create_user('u', 'u@gmail.com', 'pas', 'S', 'BS', 'CS')
+        userrnd1 = User.create_user('u', 'u@gmail.com', 'pas', 'BS', 'CS')
         msgID = Messages.create_message(1, userrnd1, 'Hello this is test message')
         test_data = [
             (1, msgID, userrnd1),

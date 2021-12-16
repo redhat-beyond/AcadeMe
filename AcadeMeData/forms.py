@@ -4,9 +4,21 @@ from AcadeMeData.models import User, DjangoUser, UNIVERSITYCHOICES, DEGREECHOICE
 
 
 class UserRegistrationForm(UserCreationForm):
-    university = forms.ChoiceField(choices=UNIVERSITYCHOICES.choices, required=False)
-    degree = forms.ChoiceField(choices=DEGREECHOICES.choices, required=False)
-    email = forms.EmailField(required=True)
+    password1 = forms.CharField(
+        label='Password',
+        widget=forms.PasswordInput(attrs={'id': 'selectContent', 'placeholder': 'Enter Passowrd'})
+    )
+    password2 = forms.CharField(
+        label='Password',
+        widget=forms.PasswordInput(attrs={'id': 'selectContent', 'placeholder': 'Enter Passowrd'})
+    )
+
+    university = forms.ChoiceField(choices=UNIVERSITYCHOICES.choices, required=False,
+                                   widget=forms.Select(attrs={'id': 'selectContent'}))
+    degree = forms.ChoiceField(choices=DEGREECHOICES.choices, required=False,
+                               widget=forms.Select(attrs={'id': 'selectContent'}))
+    email = forms.EmailField(required=True,
+                             widget=forms.TextInput(attrs={'id': 'selectContent', 'placeholder': 'Enter e-mail'}))
 
     class Meta1:
         model = DjangoUser

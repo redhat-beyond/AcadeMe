@@ -1,5 +1,4 @@
 from django.shortcuts import render
-# redirect
 
 
 def app_layout(request):
@@ -12,3 +11,11 @@ def homePage(request):
 
 def contact(request):
     return render(request, 'landing/contact_us.html')
+
+
+def loginPage(request):
+    return render(request, 'login/login.html')
+
+
+def registrationPage(request):
+    return render(request, 'registration/registration.html')
