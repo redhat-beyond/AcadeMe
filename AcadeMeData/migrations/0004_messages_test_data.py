@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     def generate_msgdata(apps, schema_editor):
         from AcadeMeData.models import Messages, User
-        userrnd1 = User.create_user('name', 'email', 'pass', 's', 'kaki', 'cs')
+        userrnd1 = User.create_user('name', 'email', 'pass', 'kaki', 'cs')
         test_data = [
             (1, userrnd1, 'random message'),
         ]

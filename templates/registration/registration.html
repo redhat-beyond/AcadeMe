@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <div class="col-md-5">
+        <img
+          src="{%  static   'img/logo.jpg' %}"
+          style="width: 270%; height: 260%"
+          alt="home"
+        />
+      </div>
+    </div>
+
+    <!-- Login Form -->
+  <div class="justify-content-center">
+
+    <form action="" method="POST">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div>
+            <p>{{ field }}</p> 
+
+            {% for error in field.errors %}
+                <small style="color: red">{{ error }}</small>
+            {% endfor %}
+        </div>
+    {% endfor %}
+      </div>
+      <input type="submit" class="fadeIn fifth mt-2 mb-2" value="Register" />
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="{% url 'login' %}"
+        >Already a user? Log in here</a
+      >
+    </div>
+  </div>
+</div>
+{% endblock %}
