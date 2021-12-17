@@ -191,8 +191,14 @@ class Messages(models.Model):
 
 class MessageTags(models.Model):
     id = models.IntegerField(primary_key=True, default=0)
-    msgID = models.ForeignKey(Messages, on_delete=models.CASCADE)
+    msg = models.ForeignKey(Messages, on_delete=models.CASCADE)
     userID = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def create_msgtag(id, msg, userID):
+        with transaction.atomic():
+            tag = MessageTags(id=id, msg=msg, userID=userID)
+            tag.save()
+            return tag
 
     def __str__(self):
         return self.id
