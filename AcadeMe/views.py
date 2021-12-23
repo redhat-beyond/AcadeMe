@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from AcadeMeData.models import University, Degree
 
 
 def app_layout(request):
@@ -6,7 +7,11 @@ def app_layout(request):
 
 
 def homePage(request):
-    return render(request, 'landing/homepage.html')
+    all_universities = University.objects.all()
+    all_degrees = Degree.objects.all()
+    #     University.get_universities() # added this function in models.py
+    context = {'all_universities': all_universities, 'all_degrees': all_degrees}
+    return render(request, '../templates/landing/homepage.html', context)
 
 
 def contact(request):

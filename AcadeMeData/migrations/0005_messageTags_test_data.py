@@ -5,6 +5,9 @@ class Migration(migrations.Migration):
     dependencies = [
         ('auth', '__latest__'),
         ('AcadeMeData', '0001_initial'),
+        ('AcadeMeData', '0002_User_test_data'),
+        ('AcadeMeData', '0003_messageBoards_test_data'),
+        ('AcadeMeData', '0004_messages_test_data'),
     ]
 
     def generate_msgtagsdata(apps, schema_editor):
@@ -16,7 +19,7 @@ class Migration(migrations.Migration):
         ]
         with transaction.atomic():
             for id, msgID, userID in test_data:
-                msgTag = MessageTags(id=id, msgID=msgID, userID=userID)
+                msgTag = MessageTags(id=id, msg=msgID, userID=userID)
                 msgTag.save()
 
     operations = [
