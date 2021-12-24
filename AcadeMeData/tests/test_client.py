@@ -1,6 +1,9 @@
+import pytest
+
 from AcadeMe import views
 
 
+@pytest.fixture
 def test_homepage(client):
     request = client.get('')
     response = views.homePage(request)
