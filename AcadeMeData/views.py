@@ -19,12 +19,13 @@ def register(request):
     context = {'form': form}
     return render(request, '../templates/registration/registration.html', context)
 
+
 class SearchResultsView(ListView):
     model = Course
     template_name = 'search.html'
-    
-    def get_queryset(self): # new
+
+    def get_queryset(self):
         query = self.request.GET.get('q')
         object_list = Course.objects.filter(name__icontains=query)
-       
+
         return object_list
