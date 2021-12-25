@@ -8,6 +8,6 @@ def test_homepage(client):
 
 
 def test_contactus(client):
-    request = client.get('contact_us/')
+    request = client.get('contact-us/')
     response = views.contact(request)
     assert response.status_code == 200

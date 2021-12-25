@@ -9,8 +9,12 @@ def homePage(request):
     return render(request, 'landing/homepage.html')
 
 
+def courseList(request):
+    return render(request, 'landing/course-list-page.html')
+
+
 def contact(request):
-    return render(request, 'landing/contact_us.html')
+    return render(request, 'landing/contact-us.html')
 
 
 def loginPage(request):

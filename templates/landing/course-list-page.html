@@ -1,0 +1,65 @@
+{% extends 'app_layout.html' %} {% load static %} {% block content %}
+<body>
+   <div class="d-flex flex-column justify-content-center">
+      <div
+         class="
+         top-container
+         align-items-center
+         d-flex
+         flex-column
+         justify-content-center
+         align-items-center
+         "
+         >
+         <div>
+            <img class="logo my-3" src="{% static 'img/academe_logo.png' %}" />
+         </div>
+         <div>
+            <h1 class="font-weight-bold">
+               Please Pick The Course You Are Interested In
+            </h1>
+         </div>
+      </div>
+   </div>
+   <div class="d-flex flex-row bottom-container justify-content-center">
+      <div class="d-flex flex-wrap m-5 justify-content-center">
+         <div class="card mr-4 mb-4">
+            <div class="card-body">
+               <h4><b>Linear Algebra</b></h4>
+               <a href="#" class="btn btn-primary">Go To Course Page</a>
+            </div>
+         </div>
+         <div class="card mr-4 mb-4">
+            <div class="card-body">
+               <h4><b>Logic and Set Theory</b></h4>
+               <a href="#" class="btn btn-primary">Go To Course Page</a>
+            </div>
+         </div>
+         <div class="card mr-4 mb-4">
+            <div class="card-body">
+               <h4><b>Machine Learning</b></h4>
+               <a href="#" class="btn btn-primary">Go To Course Page</a>
+            </div>
+         </div>
+         <div class="card mr-4 mb-4">
+            <div class="card-body">
+               <h4><b>Operating Systems</b></h4>
+               <a href="#" class="btn btn-primary">Go To Course Page</a>
+            </div>
+         </div>
+         <div class="card mr-4 mb-4">
+            <div class="card-body">
+               <h4><b>Digital Architechtures</b></h4>
+               <a href="#" class="btn btn-primary">Go To Course Page</a>
+            </div>
+         </div>
+         <div class="card mr-4 mb-4">
+            <div class="card-body">
+               <h4><b>Intro to Java</b></h4>
+               <a href="#" class="btn btn-primary">Go To Course Page</a>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+{% endblock %}
