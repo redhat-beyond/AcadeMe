@@ -12,7 +12,7 @@ def generate_university(university_id=5, name='The Technion', location="Haifa",
 
 
 @pytest.fixture
-def generate_degree(degree_id=1, name='History', universities="Ben Gurion University, Reichman University",
+def generate_degree(degree_id=1, name='History101', universities="Ben Gurion University, Reichman University",
                     description="Learn about historic events and their influences on the world"):
     degree = Degree.create_degree(degree_id=degree_id, name=name, universities=universities,
                                   description=description)
