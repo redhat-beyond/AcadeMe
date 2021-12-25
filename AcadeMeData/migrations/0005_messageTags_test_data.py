@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         ]
         with transaction.atomic():
             for id, msgID, userID in test_data:
-                msgTag = MessageTags(id=id, msgID=msgID, userID=userID)
+                msgTag = MessageTags(id=id, msg=msgID, userID=userID)
                 msgTag.save()
 
     operations = [
