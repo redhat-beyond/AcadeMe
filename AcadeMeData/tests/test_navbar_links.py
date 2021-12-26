@@ -11,16 +11,17 @@ def user_example():
 
 
 @pytest.mark.django_db
-class TestNavbarLinks:
-    def navbar_links_for_logged_in_user(client, user_example):
-        client.force_login(user_example.user)
-        response = client.get("/")
-        assert response.status_code == 200
-        assert response.context['navbar_links'] == {f"Hello {user_example.user.username}": "#",
-                                                    "Log Out": "/logout"}
+def navbar_links_for_logged_in_user(client, user_example):
+    client.force_login(user_example.user)
+    response = client.get("")
+    assert response.status_code == 200
+    assert response.context['navbar_links'] == {f"Hello {user_example.user.username}": "#",
+                                                "Logout": "/logout"}
 
-    def navbar_links_for_not_logged_in_user(client):
-        response = client.get("/")
-        assert response.status_code == 200
-        assert response.context['navbar_links'] == {"Log In": "/login",
-                                                    "Register": "/register"}
+
+@pytest.mark.django_db
+def navbar_links_for_not_logged_in_user(client):
+    response = client.get("")
+    assert response.status_code == 200
+    assert response.context['navbar_links'] == {"Login": "/login",
+                                                "Register": "/register"}

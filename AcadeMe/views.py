@@ -3,7 +3,12 @@ from AcadeMeData.models import University, Degree
 
 
 def app_layout(request):
-    return render(request, 'app_layout.html')
+    context = {}
+    if request.user.is_authenticated:
+        context['navbar_links'] = {f"Welcome {request.user.username}": "#", "Logout": "/logout"}
+    else:
+        context['navbar_links'] = {"Login": "/login", "Register": "/register"}
+    return render(request, 'app_layout.html', context)
 
 
 def homePage(request):
@@ -23,3 +28,12 @@ def loginPage(request):
 
 def registrationPage(request):
     return render(request, 'registration/registration.html')
+
+
+# def add_navbar_links_to_context(request):
+#     context = {}
+#     if request.user.is_authenticated:
+#         context['navbar_links'] = {f"Welcome {request.user.username}": "#", "Logout": "/logout"}
+#     else:
+#         context['navbar_links'] = {"Login": "/login", "Register": "/register"}
+#     return render(request, 'app_layout.html', context)
