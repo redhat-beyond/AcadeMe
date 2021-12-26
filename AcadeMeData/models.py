@@ -114,9 +114,6 @@ class University(models.Model):
         # gets the relevant university that match the given location
         return University.objects.get(location=location)
 
-    def return_univerities(self):
-        return
-
 
 class Professor(models.Model):
     professor_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)])
