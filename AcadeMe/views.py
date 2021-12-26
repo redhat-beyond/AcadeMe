@@ -10,7 +10,7 @@ def homePage(request):
     all_universities = University.objects.all()
     all_degrees = Degree.objects.all()
     context = {'all_universities': all_universities, 'all_degrees': all_degrees}
-    return render(request, '../templates/landing/homepage.html', context)
+    return render(request, 'landing/homepage.html', context)
 
 
 def contact(request):
