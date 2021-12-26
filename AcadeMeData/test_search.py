@@ -1,5 +1,4 @@
 import pytest
-from AcadeMe import views
 from AcadeMeData.models import Course
 
 
