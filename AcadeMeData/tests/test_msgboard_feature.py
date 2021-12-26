@@ -1,4 +1,5 @@
 import pytest
+from AcadeMeData.models import User
 from AcadeMeData.forms import MessageForm
 from django.contrib.messages import get_messages
 
