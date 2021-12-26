@@ -36,6 +36,9 @@
             </li>
             {% else %}
             <li>
+                <a class="nav-link mr-4" >Welcome {{ user.username }} </a>
+            </li>
+            <li>
                 <a class="nav-link mr-4" href="/logout">Log Out</a>
             </li>
             {% endif %}

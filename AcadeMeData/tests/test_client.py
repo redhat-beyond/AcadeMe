@@ -3,7 +3,7 @@ import pytest
 from AcadeMe import views
 
 
-@pytest.fixture
+@pytest.mark.django_db
 def test_homepage(client):
     request = client.get('')
     response = views.homePage(request)
