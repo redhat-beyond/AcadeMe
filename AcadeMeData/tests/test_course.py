@@ -19,9 +19,7 @@ class TestCourseModel:
         assert course.professor == generate_course.professor
 
     def test_if_course_belongs(self, generate_course, generate_degree, generate_university):
-        bool = generate_course.course_belongs(generate_university, generate_degree)
-        assert bool
+        assert generate_course.course_belongs(generate_university, generate_degree)
 
     def test_if_course_not_belongs(self, generate_course, generate_university):
-        bool = generate_course.course_belongs(generate_university, None)
-        assert not bool
+        assert not generate_course.course_belongs(generate_university, None)
