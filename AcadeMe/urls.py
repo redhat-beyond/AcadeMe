@@ -28,5 +28,4 @@ urlpatterns = [
     path('search/',
          user_views.SearchResultsView.as_view(template_name='../templates/search/search.html'), name='search'),
     path('msgboard/', user_views.msgboard, name='msgboard')
-
 ]
