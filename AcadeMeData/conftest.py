@@ -1,5 +1,5 @@
 import pytest
-from AcadeMeData.models import University, Degree, Professor, User
+from AcadeMeData.models import University, Degree, Professor, Course
 
 
 @pytest.fixture
