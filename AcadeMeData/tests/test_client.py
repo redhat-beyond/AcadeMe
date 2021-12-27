@@ -1,4 +1,5 @@
 from AcadeMe import views
+from django.template.loader import render_to_string
 
 
 def test_homepage(client):
