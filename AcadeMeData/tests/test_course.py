@@ -1,5 +1,5 @@
 import pytest
-from AcadeMeData.models import Course
+from AcadeMeData.models import Course, Degree
 
 
 @pytest.fixture
@@ -9,6 +9,15 @@ def generate_course(generate_degree, generate_professor, generate_university, co
                                   description=description, professor=generate_professor, university=generate_university)
     course.save()
     return course
+
+
+@pytest.fixture
+def generate_degree2(degree_id=5, name='Computer Science', universities="Reichman University",
+                     description="Learn to be a programmer"):
+    degree = Degree.create_degree(degree_id=degree_id, name=name, universities=universities,
+                                  description=description)
+    degree.save()
+    return degree
 
 
 @pytest.mark.django_db
@@ -22,4 +31,4 @@ class TestCourseModel:
         assert generate_course.course_belongs(generate_university, generate_degree)
 
     def test_if_course_not_belongs(self, generate_course, generate_university):
-        assert not generate_course.course_belongs(generate_university, None)
+        assert not generate_course.course_belongs(generate_university, generate_degree2)
