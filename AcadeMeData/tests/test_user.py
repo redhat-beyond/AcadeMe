@@ -2,14 +2,6 @@ import pytest
 from AcadeMeData.models import User
 
 
-@pytest.fixture
-def user_example():
-    user_data = {'username': "username", 'password': "password", 'email': "user@example.com",
-                 'university': "RU", 'degree': "CS"}
-    user = User.create_user(*user_data)
-    return user
-
-
 @pytest.mark.django_db
 class TestUserModel:
     def test_create_user(self, user_example):
