@@ -3,11 +3,7 @@ from AcadeMeData.models import University, Degree
 
 
 def app_layout(request):
-    # context = {}
-    # if request.user.is_authenticated:
-    #     context['navbar_links'] = {f"Welcome {request.user.username}": "#", "Logout": "/logout"}
-    # else:
-    #     context['navbar_links'] = {"Login": "/login", "Register": "/register"}
+   
     return render(request, 'app_layout.html')
 
 
