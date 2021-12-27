@@ -246,6 +246,4 @@ class Course(models.Model):
         """
         returns if course belongs to this degree in this university
         """
-        if degree in self.degree.all() and university == self.university:
-            return True
-        return False
+        return degree in self.degree.all() and university == self.university
