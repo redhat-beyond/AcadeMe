@@ -3,7 +3,6 @@ from AcadeMeData.models import University, Degree
 
 
 def app_layout(request):
-   
     return render(request, 'app_layout.html')
 
 
