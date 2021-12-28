@@ -1,35 +1,67 @@
-{% extends 'app_layout.html' %}
-{% load static %}
-{% block content %}
+{% extends 'app_layout.html' %} {% load static %} {% block content %}
 
 <body>
-    <div class="d-flex flex-column justify-content-center">
-       <div
-          class="
-          top-container
-          align-items-center
-          d-flex
-          flex-column
-          justify-content-center
-          align-items-center
-          "
-          >
-          <div>
-             <img class="course-list-logo my-3" src="{% static 'img/academe_logo.png' %}" />
-          </div>
-       </div>
+  <div class="d-flex flex-column justify-content-center">
+    <div
+      class="
+        top-container
+        align-items-center
+        d-flex
+        flex-column
+        justify-content-center
+        align-items-center
+      "
+    >
+      <div>
+        <img
+          class="course-list-logo my-3"
+          src="{% static 'img/academe_logo.png' %}"
+        />
+      </div>
+      <h2 class="my-4 font-weight-bold">{{ selectedCourse.name }}</h2>
     </div>
-    <div class="d-flex flex-column bottom-container justify-content-center">
-        <h2><strong> Name is:</strong> {{ selectedCourse.name }}</h2>
-        <h2><strong>Mandatory Course:</strong> {{ selectedCourse.mandatory }}</h2>
-        <h2><strong>Course Proffesor:</strong> {{ selectedCourse.professor }}</h2>
-        {% if selectedCourse.description %}
-            <h2><strong>Course Description:</strong> {{ selectedCourse.description }}</h2>
+  </div>
+  <div
+    class="
+      d-flex
+      flex-row
+      bottom-container
+      justify-content-center justify-content-around
+    "
+  >
+    <div class="mt-4 d-flex flex-column">
+      <h4 class="my-3"><u>Some Important Info</u></h4>
+      <ul>
+        {% if selectedCourse.mandatory%}
+        <li class="h5">This Is a Mandatory Course</li>
         {% else %}
-            <h3> We currently have no Course Description </h3>
+        <li class="h5">This Is Not a Mandatory Course</li>
         {% endif %}
-
+        <li class="h5 mt-3 text-capitalize">
+          <strong><u>Course Proffesor:</u></strong>   {{ selectedCourse.professor }}
+        </li>
+        {% if selectedCourse.description %}
+        <li class="h5 mt-3">
+          <strong><u>Course Description:</u></strong>   {{ selectedCourse.description }}
+        </li>
+        {% else %}
+        <li class="h5 mt-3">We currently have no Course Description</li>
+        {% endif %}
+      </ul>
     </div>
+    <div class="mt-4 d-flex flex-column">
+      <h4 class="my-3">Conncet To MsgBoard</h4>
+      <!-- <h5><strong>Mandatory Course:</strong> {{ selectedCourse.mandatory }}</h5>
+      <h5><strong>Course Proffesor:</strong> {{ selectedCourse.professor }}</h5>
+      {% if selectedCourse.description %}
+      <h5>
+        <strong>Course Description:</strong> {{ selectedCourse.description }}
+      </h5>
+      {% else %}
+      <h3>We currently have no Course Description</h3>
+      {% endif %} -->
+    </div>
+  </div>
 </body>
 
 {% endblock %}

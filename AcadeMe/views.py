@@ -22,11 +22,8 @@ def courseList(request):
     context['seldegree'] = seldegree
     all_courses = Course.objects.all()
     context['all_courses'] = all_courses
-    # for degree in Degree.objects.all():
-    #     if degree.name == 'Computer Science':
-    #         course_degree = degree.name
-    # context['course_degree'] = course_degree
     return render(request, 'landing/course-list-page.html', context)
+
 
 def course(request):
     context = {}

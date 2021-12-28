@@ -1,6 +1,6 @@
 {% extends 'app_layout.html' %} {% load static %} {% block content %}
 <body>
-  <div class="d-flex flex-column justify-content-center">
+  <div class="d-flex flex-column justify-content-center text-center">
     <div
       class="
         top-container
@@ -10,7 +10,7 @@
         justify-content-center
         align-items-center
       "
-    >
+      >
       <div>
         <img
           class="course-list-logo my-3"
@@ -29,7 +29,7 @@
     </div>
   </div>
   <div class="d-flex flex-row bottom-container justify-content-center">
-    <div class="d-flex flex-wrap m-5 justify-content-center">
+    <div class="d-flex flex-wrap m-5 justify-content-center text-center">
       {% for course in all_courses %}
       {% for degree in course.degree.all %} 
       {% if degree.name == seldegree %}
