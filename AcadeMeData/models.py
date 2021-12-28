@@ -29,6 +29,9 @@ class User(models.Model):
     university = models.CharField(max_length=2, choices=UNIVERSITYCHOICES.choices, default=UNIVERSITYCHOICES.Unknown)
     degree = models.CharField(max_length=2, choices=DEGREECHOICES.choices, default=DEGREECHOICES.Unknown)
 
+    def __str__(self):
+        return self.user.username + ' ' + self.user.university
+    
     @staticmethod
     def create_user(username, email, password, university, degree):
         django_user = DjangoUser.objects.create_user(username=username,
@@ -214,6 +217,9 @@ class Course(models.Model):
     mandatory = models.BooleanField(default=False)  # False for elective, True for mandatory
     description = models.TextField(null=True, blank=True)
     professor = models.ForeignKey(Professor, on_delete=models.RESTRICT)
+    
+    def __str__(self):
+        return self.name
 
     @staticmethod
     def create_course(course_id, name, degree, mandatory, description, professor):

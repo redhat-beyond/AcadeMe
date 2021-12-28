@@ -1,46 +1,45 @@
 {% extends 'app_layout.html' %}
 {% load static %}
 {% block content %}
-  <body>
-    <div class="d-flex flex-column justify-content-center">
-        <div class="top-container align-items-center d-flex flex-column justify-content-center align-items-center">
-          <div class="mt-5 mb-3">
+<body>
+   <div class="d-flex flex-column justify-content-center">
+      <div class="top-container align-items-center d-flex flex-column justify-content-center align-items-center">
+         <div class="mt-5 mb-3">
             <h1 class="font-weight-bold">Welcome To</h1>
-          </div>
-          <div>
+         </div>
+         <div>
             <img class="logo mb-5" src="{% static 'img/academe_logo.png' %}" />
-          </div>
-          
-        </div>
+         </div>
       </div>
-      <div class="d-flex flex-row bottom-container justify-content-center">
-        <div class="flex-column m-5">
-          <h3 class="my-2">Choose University</h3>
-          <div>
-            <select aria-label="choose-university" id="selectContent">
-              <option selected>Choose University</option>
-              <option value="1">Reichman University</option>
-              <option value="2">Hebrew University of Jerusalem</option>
-              <option value="3">Ben Gurion University</option>
-              <option value="4">Tel-Aviv University</option>
-              <option value="5">Technion University</option>
-            </select>
-          </div>
-        </div>
-        <div class="flex-column m-5">
-          <h3 class="my-2">Choose Degree</h3>
-          <div>
-            <select aria-label="choose-degree" id="selectContent">
-              <option selected>Choose Degree</option>
-              <option value="1">Computer Science</option>
-              <option value="2">Psychology</option>
-              <option value="3">Business Administration</option>
-              <option value="4">Law</option>
-              <option value="5">Sustainability</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
-  {% endblock %}
+   </div>
+   <div class="d-flex flex-row bottom-container justify-content-center">
+      <form action="course-list/" method="post" id="select-form">
+        {% csrf_token %}
+         <div class="flex-column m-5">
+            <h3 class="my-2">Choose University</h3>
+            <div>
+               <select aria-label="choose-university" id="selectUniversity" name="selectUniversity">
+                  <option selected>Choose University</option>
+                  {% for university in universities %}
+                  <option value="{{ university }}">{{ university.name }}</option>
+                  {% endfor %}
+               </select>
+            </div>
+         </div>
+         <div class="flex-column m-5">
+            <h3 class="my-2">Choose Degree</h3>
+            <div>
+               <select aria-label="choose-degree" id="selectDegree" name="selectDegree">
+                  <option selected>Choose Degree</option>
+                  {% for degree in degrees %}
+                  <option value="{{ degree }}">{{ degree.name }}</option>
+                  {% endfor %}
+               </select>
+            </div>
+         </div>
+         <input type="submit" value="Submit!"/>
+      </form>
+   </div>
+   </div>
+</body>
+{% endblock %}
