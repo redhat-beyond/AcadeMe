@@ -1,6 +1,4 @@
 from django.shortcuts import render
-import pdb
-
 from AcadeMeData.models import Course, Degree, University
 
 
@@ -9,12 +7,11 @@ def app_layout(request):
 
 
 def homePage(request):
-    universities = University.objects.all()
-    degrees = Degree.objects.all()
-    return render(request, 'landing/homepage.html', {
-        "universities": universities,
-        "degrees": degrees,
-    })
+    all_universities = University.objects.all()
+    all_degrees = Degree.objects.all()
+    context = {'all_universities': all_universities, 'all_degrees': all_degrees}
+    add_navbar_links_to_context(request, context)
+    return render(request, 'landing/homepage.html', context)
 
 
 def courseList(request):
@@ -44,7 +41,9 @@ def course(request):
 
 
 def contact(request):
-    return render(request, 'landing/contact-us.html')
+    context = {}
+    add_navbar_links_to_context(request, context)
+    return render(request, 'landing/contact-us.html', context)
 
 
 def loginPage(request):
@@ -53,3 +52,10 @@ def loginPage(request):
 
 def registrationPage(request):
     return render(request, 'registration/registration.html')
+
+
+def add_navbar_links_to_context(request, context):
+    if request.user.is_authenticated:
+        context['navbar_links'] = {f"Welcome {request.user.username}": "#", "Logout": "/logout"}
+    else:
+        context['navbar_links'] = {"Login": "/login", "Register": "/register"}

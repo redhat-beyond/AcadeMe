@@ -21,7 +21,7 @@
             <div>
                <select aria-label="choose-university" id="selectUniversity" name="selectUniversity">
                   <option selected>Choose University</option>
-                  {% for university in universities %}
+                  {% for university in all_universities %}
                   <option value="{{ university }}">{{ university.name }}</option>
                   {% endfor %}
                </select>
@@ -32,7 +32,7 @@
             <div>
                <select aria-label="choose-degree" id="selectDegree" name="selectDegree">
                   <option selected>Choose Degree</option>
-                  {% for degree in degrees %}
+                  {% for degree in all_degrees %}
                   <option value="{{ degree }}">{{ degree.name }}</option>
                   {% endfor %}
                </select>

@@ -1,12 +1,13 @@
-from AcadeMe import views
+import pytest
 
 
+@pytest.mark.django_db
 def test_homepage(client):
-    request = client.get('')
-    response = views.homePage(request)
+    response = client.get('')
     assert response.status_code == 200
 
 
+@pytest.mark.django_db
 def test_contactus(client):
     request = client.get('contact-us/')
     response = views.contact(request)

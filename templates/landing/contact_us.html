@@ -1,0 +1,46 @@
+{% extends 'app_layout.html' %}
+{% load static %}
+{% block content %}
+<body>
+<div class="d-flex flex-column justify-content-center">
+    <div class="top-container align-items-center d-flex flex-column justify-content-center align-items-center">
+        <div class="mt-5 mb-3">
+            <h1 class="font-weight-bold">Welcome To</h1>
+        </div>
+        <div>
+            <img class="logo mb-5" src="{% static 'img/academe_logo.png' %}"/>
+        </div>
+
+    </div>
+</div>
+
+<div class="flex-row bottom-container justify-content-center" style="margin-top: 30px">
+    <div class="flex-col m-5">
+        <h3 class="my-1">Website Developers:</h3>
+        <div>
+
+            <ol aria-label="Team Members" style="list-style-type: none;">
+
+                <li class="nav-item">
+                    <a>Dan Waldman @ daniel.waldman@idc.ac.il</a>
+                </li>
+                <li class="nav-item">
+                    <a>Dean Civlin @ dean.civlin@idc.ac.il</a>
+                </li>
+                <li class="nav-item">
+                    <a>Raz Ashtar @ raz.ashtar@idc.ac.il</a>
+                </li>
+                <li class="nav-item">
+                    <a>Daniel Itkes @ daniel.itkes@idc.ac.il</a>
+                </li>
+                <li class="nav-item">
+                    <a>Shaked Hagag @ shaked.hagag@idc.ac.il</a>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+{% endblock %}
+</html>
