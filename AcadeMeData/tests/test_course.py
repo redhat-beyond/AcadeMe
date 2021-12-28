@@ -12,8 +12,9 @@ def generate_course(generate_degree, generate_professor, generate_university, co
 
 
 @pytest.fixture
-def generate_degree2(degree_id=5, name='Computer Science', universities="Reichman University",
-                     description="Learn to be a programmer"):
+def generate_degree_that_dosent_have_course(degree_id=5, name='Computer Science', universities="Reichman University",
+                                            description="Learn to be a programmer"):
+    """This degree doesnt include the course defined in generate_course"""
     degree = Degree.create_degree(degree_id=degree_id, name=name, universities=universities,
                                   description=description)
     degree.save()
@@ -31,4 +32,4 @@ class TestCourseModel:
         assert generate_course.course_belongs(generate_university, generate_degree)
 
     def test_if_course_not_belongs(self, generate_course, generate_university):
-        assert not generate_course.course_belongs(generate_university, generate_degree2)
+        assert not generate_course.course_belongs(generate_university, generate_degree_that_dosent_have_course)
