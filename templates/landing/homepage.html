@@ -12,10 +12,11 @@
          </div>
       </div>
    </div>
+   {% if user.is_authenticated %}
    <div class="d-flex flex-row bottom-container justify-content-center">
       <form action="course-list/" method="post" id="select-form">
         {% csrf_token %}
-         <div class="flex-column m-5">
+         <div class="mx-5 mt-5 mb-4">
             <h3 class="my-2">Choose University</h3>
             <div>
                <select aria-label="choose-university" id="selectUniversity" name="selectUniversity">
@@ -26,7 +27,7 @@
                </select>
             </div>
          </div>
-         <div class="flex-column m-5">
+         <div class="mx-5 mt-3 mb-5">
             <h3 class="my-2">Choose Degree</h3>
             <div>
                <select aria-label="choose-degree" id="selectDegree" name="selectDegree">
@@ -37,9 +38,10 @@
                </select>
             </div>
          </div>
-         <input type="submit" value="Submit!"/>
+         <div class="mb-3"><input class="btn btn-primary" type="submit" value="Submit!"/></div>
       </form>
    </div>
+   {% endif %}
    </div>
 </body>
 {% endblock %}

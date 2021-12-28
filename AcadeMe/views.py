@@ -31,6 +31,17 @@ def courseList(request):
     # context['course_degree'] = course_degree
     return render(request, 'landing/course-list-page.html', context)
 
+def course(request):
+    context = {}
+    goToCourse = request.POST.get('goTo', None)
+    context['goToCourse'] = goToCourse
+    all_courses = Course.objects.all()
+    for course in all_courses:
+        if course.name == goToCourse:
+            selectedCourse = Course.objects.get(name=goToCourse)
+    context['selectedCourse'] = selectedCourse
+    return render(request, 'landing/course-page.html', context)
+
 
 def contact(request):
     return render(request, 'landing/contact-us.html')
