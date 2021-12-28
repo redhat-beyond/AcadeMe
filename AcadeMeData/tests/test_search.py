@@ -9,7 +9,7 @@ def test_query(generate_course):
 
 @pytest.mark.django_db
 def test_search(client, generate_course):
-    url = '{url}?{filter}={value}'.format(url=reverse('search'),filter='q', value=generate-course.name)
+    url = '{url}?{filter}={value}'.format(url=reverse('search'),filter='q', value=generate_course.name)
     response = client.get(url)
     assert response.status_code == 200
 
