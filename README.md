@@ -1,4 +1,4 @@
-<img src="static/img/academe_logo.png" width="650">
+<img src="static/img/logo.png" width="650">
 
 
 # Description
