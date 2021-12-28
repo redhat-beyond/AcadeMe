@@ -38,8 +38,7 @@ def test_msgboard_feature(client, user_example, generate_msgboard):
     user = auth.get_user(client)
     assert user.is_authenticated
     form_data = {'text': 'Lorem Ipsum',
-                 'userID': user_example.user,
-                 'board': 'Linear Algebra'}
+                 'userID': user_example.user}
     form = MessageForm(data=form_data)
     assert (form.is_valid())
     response = client.post("/msgboard/", data=form_data, follow=True)
