@@ -1,5 +1,5 @@
 import pytest
-from AcadeMeData.models import University, Degree, Professor
+from AcadeMeData.models import University, Degree, Professor, User
 
 
 @pytest.fixture
@@ -29,3 +29,11 @@ def generate_professor(generate_university, professor_id=2, name="DR Arnold Schw
                                            description=description,
                                            rate=rate)
     return professor
+
+
+@pytest.fixture
+def user_example():
+    user_data = {'username': "username", 'password': "password", 'email': "user@example.com",
+                 'university': "RU", 'degree': "CS"}
+    user = User.create_user(*user_data)
+    return user
