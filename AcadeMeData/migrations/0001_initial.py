@@ -13,6 +13,16 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='Course',
+            fields=[
+                ('course_id', models.IntegerField(default=0, primary_key=True, serialize=False,
+                                                  validators=[django.core.validators.MinValueValidator(0)])),
+                ('name', models.CharField(max_length=100, unique=True)),
+                ('mandatory', models.BooleanField(default=False)),
+                ('description', models.TextField(blank=True, null=True)),
+            ],
+        ),
+        migrations.CreateModel(
             name='Degree',
             fields=[
                 ('degree_id', models.IntegerField(default=0, primary_key=True, serialize=False,
@@ -26,7 +36,8 @@ class Migration(migrations.Migration):
             name='MessageBoards',
             fields=[
                 ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('courseName', models.TextField(max_length=30)),
+                ('courseName', models.ForeignKey(blank=True, default=1, on_delete=django.db.models.deletion.CASCADE,
+                                                 to='AcadeMeData.course')),
             ],
         ),
         migrations.CreateModel(
@@ -35,6 +46,8 @@ class Migration(migrations.Migration):
                 ('msgID', models.IntegerField(primary_key=True, serialize=False)),
                 ('text', models.TextField(max_length=300)),
                 ('msgDate', models.DateTimeField(default=django.utils.timezone.now)),
+                ('board', models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE,
+                                            to='AcadeMeData.messageboards')),
             ],
         ),
         migrations.CreateModel(
@@ -88,19 +101,19 @@ class Migration(migrations.Migration):
             name='userID',
             field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='AcadeMeData.user'),
         ),
-        migrations.CreateModel(
-            name='Course',
-            fields=[
-                ('course_id', models.IntegerField(default=0, primary_key=True, serialize=False,
-                                                  validators=[django.core.validators.MinValueValidator(0)])),
-                ('name', models.CharField(max_length=100, unique=True)),
-                ('mandatory', models.BooleanField(default=False)),
-                ('description', models.TextField(blank=True, null=True)),
-                ('degree', models.ManyToManyField(to='AcadeMeData.Degree')),
-                ('professor',
-                 models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, to='AcadeMeData.professor')),
-                ('university',
-                 models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, to='AcadeMeData.university')),
-            ],
+        migrations.AddField(
+            model_name='course',
+            name='degree',
+            field=models.ManyToManyField(to='AcadeMeData.Degree'),
+        ),
+        migrations.AddField(
+            model_name='course',
+            name='professor',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, to='AcadeMeData.professor'),
+        ),
+        migrations.AddField(
+            model_name='course',
+            name='university',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, to='AcadeMeData.university'),
         ),
     ]
