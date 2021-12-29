@@ -5,6 +5,10 @@ class Migration(migrations.Migration):
     dependencies = [
         ('auth', '__latest__'),
         ('AcadeMeData', '0001_initial'),
+        ('AcadeMeData', '0006_university_test_data'),
+        ('AcadeMeData', '0008_Professor_test_data'),
+        ('AcadeMeData', '0009_Course_test_data'),
+
     ]
 
     def generate_data(apps, schema_editor):
