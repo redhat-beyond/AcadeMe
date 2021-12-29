@@ -19,7 +19,4 @@ def test_courselist(client):
     assert response.status_code == 200
 
 
-@pytest.mark.django_db
-def test_coursepage(client):
-    response = client.get('/course-page/')
-    assert response.status_code == 200
+

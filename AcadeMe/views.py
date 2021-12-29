@@ -22,6 +22,7 @@ def courseList(request):
     context['seldegree'] = seldegree
     all_courses = Course.objects.all()
     context['all_courses'] = all_courses
+    add_navbar_links_to_context(request, context)
     return render(request, 'landing/course-list-page.html', context)
 
 
@@ -34,6 +35,7 @@ def course(request):
         if course.name == goToCourse:
             selectedCourse = Course.objects.get(name=goToCourse)
     context['selectedCourse'] = selectedCourse
+    add_navbar_links_to_context(request, context)
     return render(request, 'landing/course-page.html', context)
 
 
