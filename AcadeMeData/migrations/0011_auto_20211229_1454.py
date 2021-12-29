@@ -5,6 +5,10 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
+<<<<<<< HEAD
+=======
+
+>>>>>>> b0cbf8c (fixes)
     dependencies = [
         ('AcadeMeData', '0010_merge_20211229_1454'),
     ]
@@ -13,13 +17,21 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='messages',
             name='board',
+<<<<<<< HEAD
             field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE,
                                     to='AcadeMeData.messageboards'),
+=======
+            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='AcadeMeData.messageboards'),
+>>>>>>> b0cbf8c (fixes)
         ),
         migrations.AlterField(
             model_name='messageboards',
             name='courseName',
+<<<<<<< HEAD
             field=models.ForeignKey(blank=True, default=0, on_delete=django.db.models.deletion.CASCADE,
                                     to='AcadeMeData.course'),
+=======
+            field=models.ForeignKey(blank=True, default=0, on_delete=django.db.models.deletion.CASCADE, to='AcadeMeData.course'),
+>>>>>>> b0cbf8c (fixes)
         ),
     ]
