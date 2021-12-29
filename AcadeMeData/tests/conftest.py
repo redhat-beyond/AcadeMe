@@ -46,12 +46,3 @@ def generate_course(generate_degree, generate_professor, generate_university, co
                                   description=description, professor=generate_professor, university=generate_university)
     course.save()
     return course
-
-
-@pytest.fixture
-def generate_course(generate_degree, generate_professor, generate_university, course_id=1, name="History of Countries",
-                    mandatory=True, description="Learn about historic events and their influences on countries"):
-    course = Course.create_course(course_id=course_id, name=name, degree=generate_degree, mandatory=mandatory,
-                                  description=description, professor=generate_professor, university=generate_university)
-    course.save()
-    return course
