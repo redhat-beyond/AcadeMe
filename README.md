@@ -1,4 +1,4 @@
-<img src="static/img/logo.png" width="650">
+<img src="static/img/logo.jpg" width="650">
 
 
 # Description
