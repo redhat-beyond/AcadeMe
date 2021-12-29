@@ -195,7 +195,7 @@ class Course(models.Model):
 
 class MessageBoards(models.Model):
     id = models.IntegerField(primary_key=True)
-    courseName = models.ForeignKey(Course, null=False, blank=True, on_delete=models.CASCADE, default=1)
+    courseName = models.ForeignKey(Course, null=False, blank=True, on_delete=models.CASCADE, default=0)
 
     def __str__(self):
         return self.id
