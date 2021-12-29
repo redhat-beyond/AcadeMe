@@ -24,14 +24,14 @@ class Migration(migrations.Migration):
 
         test_data = [
             (1, 'Open Source Code Workshop', degree, False, 'Build a Django project from the grounds up!',
-             professor),
+             professor, university),
             (2, '16th Century Poetry', degree, True,
-             'Learn about the revolution in poetry in 16th century England', professor),
+             'Learn about the revolution in poetry in 16th century England', professor, university),
         ]
         with transaction.atomic():
-            for id, name, degree, mandatory, description, professor in test_data:
+            for id, name, degree, mandatory, description, professor, university in test_data:
                 course = Course(course_id=id, name=name, mandatory=mandatory,
-                                description=description, professor=professor)
+                                description=description, professor=professor, university=university)
                 course.degree.add(degree)
                 course.save()
 
