@@ -1,5 +1,5 @@
 import pytest
-from AcadeMeData.models import University, Degree, Professor, User
+from AcadeMeData.models import University, Degree, Professor, User, Course
 
 
 @pytest.fixture
@@ -37,3 +37,12 @@ def user_example():
                  'university': "RU", 'degree': "CS"}
     user = User.create_user(*user_data)
     return user
+
+
+@pytest.fixture
+def generate_course(generate_degree, generate_professor, generate_university, course_id=1, name="History of Countries",
+                    mandatory=True, description="Learn about historic events and their influences on countries"):
+    course = Course.create_course(course_id=course_id, name=name, degree=generate_degree, mandatory=mandatory,
+                                  description=description, professor=generate_professor, university=generate_university)
+    course.save()
+    return course
