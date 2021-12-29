@@ -26,5 +26,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('contact-us/', views.contact, name='contact-us'),
     path('course-list/', views.courseList, name='course-list'),
-    path('course-page/', views.course, name='course-page')
+    path('course-page/', views.course, name='course-page'),
+    path('search/',
+         user_views.SearchResultsView.as_view(template_name='../templates/search/search.html'), name='search')
 ]

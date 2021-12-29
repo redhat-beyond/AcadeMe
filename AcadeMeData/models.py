@@ -215,9 +215,10 @@ class Course(models.Model):
     mandatory = models.BooleanField(default=False)  # False for elective, True for mandatory
     description = models.TextField(null=True, blank=True)
     professor = models.ForeignKey(Professor, on_delete=models.RESTRICT)
+    university = models.ForeignKey(University, on_delete=models.RESTRICT)
 
     @staticmethod
-    def create_course(course_id, name, degree, mandatory, description, professor):
+    def create_course(course_id, name, degree, mandatory, description, professor, university):
         """
         Creates a Course object.
         """
@@ -225,7 +226,8 @@ class Course(models.Model):
                         name=name,
                         mandatory=mandatory,
                         description=description,
-                        professor=professor)
+                        professor=professor,
+                        university=university)
         course.degree.add(degree)
         course.save()
         return course
@@ -243,3 +245,9 @@ class Course(models.Model):
             return course
         except Course.DoesNotExist:
             return None
+
+    def course_belongs(self, university, degree):
+        """
+        returns if course belongs to this degree in this university
+        """
+        return degree in self.degree.all() and university == self.university

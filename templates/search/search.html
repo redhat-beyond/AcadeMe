@@ -1,0 +1,13 @@
+<h1>Search Results</h1>
+
+{% if object_list %}
+	<ul>
+		{% for course in object_list %}
+		<li>
+		{{ course.name }}
+		</li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<h3> No Results Found </h3>
+{% endif %}
