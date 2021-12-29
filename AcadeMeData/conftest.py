@@ -1,5 +1,5 @@
 import pytest
-from AcadeMeData.models import University, Degree, Professor, Course, User
+from AcadeMeData.models import University, Degree, Professor, User
 
 
 @pytest.fixture
@@ -12,7 +12,7 @@ def generate_university(university_id=5, name='The Technion', location="Haifa",
 
 
 @pytest.fixture
-def generate_degree(degree_id=1, name='History', universities="Ben Gurion University, Reichman University",
+def generate_degree(degree_id=1, name='History101', universities="Ben Gurion University, Reichman University",
                     description="Learn about historic events and their influences on the world"):
     degree = Degree.create_degree(degree_id=degree_id, name=name, universities=universities,
                                   description=description)
@@ -32,6 +32,14 @@ def generate_professor(generate_university, professor_id=2, name="DR Arnold Schw
 
 
 @pytest.fixture
+def user_example():
+    user_data = {'username': "username", 'password': "password", 'email': "user@example.com",
+                 'university': "RU", 'degree': "CS"}
+    user = User.create_user(*user_data)
+    return user
+
+
+@pytest.fixture
 def generate_course(generate_degree, generate_professor, course_id=1, name="History of Countries",
                     mandatory=True, description="Learn about historic events and their influences on countries"):
     professor = generate_professor
@@ -40,11 +48,3 @@ def generate_course(generate_degree, generate_professor, course_id=1, name="Hist
                                   description=description, professor=professor)
     course.save()
     return course
-
-
-@pytest.fixture
-def user_example():
-    user_data = {'username': "username", 'password': "password", 'email': "user@example.com",
-                 'university': "RU", 'degree': "CS"}
-    user = User.create_user(*user_data)
-    return user
