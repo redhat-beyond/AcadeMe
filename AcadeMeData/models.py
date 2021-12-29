@@ -195,15 +195,7 @@ class Course(models.Model):
 
 class MessageBoards(models.Model):
     id = models.IntegerField(primary_key=True)
-<<<<<<< HEAD
-<<<<<<< HEAD
     courseName = models.ForeignKey(Course, null=False, blank=True, on_delete=models.CASCADE, default=0)
-=======
-    courseName = models.ForeignKey(Course, null=False, blank=True, on_delete=models.CASCADE, default=1)
->>>>>>> b7d512e (The change of messages model to inherit board fk)
-=======
-    courseName = models.ForeignKey(Course, null=False, blank=True, on_delete=models.CASCADE, default=0)
->>>>>>> ef3096d (fixes)
 
     def __str__(self):
         return self.id
