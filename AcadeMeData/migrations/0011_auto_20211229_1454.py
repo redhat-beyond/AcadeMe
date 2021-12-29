@@ -6,9 +6,12 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> b0cbf8c (fixes)
+=======
+>>>>>>> ce1a93b (flake8 fixes)
     dependencies = [
         ('AcadeMeData', '0010_merge_20211229_1454'),
     ]
@@ -18,20 +21,30 @@ class Migration(migrations.Migration):
             model_name='messages',
             name='board',
 <<<<<<< HEAD
+<<<<<<< HEAD
             field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE,
                                     to='AcadeMeData.messageboards'),
 =======
             field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='AcadeMeData.messageboards'),
 >>>>>>> b0cbf8c (fixes)
+=======
+            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE,
+                                    to='AcadeMeData.messageboards'),
+>>>>>>> ce1a93b (flake8 fixes)
         ),
         migrations.AlterField(
             model_name='messageboards',
             name='courseName',
+<<<<<<< HEAD
 <<<<<<< HEAD
             field=models.ForeignKey(blank=True, default=0, on_delete=django.db.models.deletion.CASCADE,
                                     to='AcadeMeData.course'),
 =======
             field=models.ForeignKey(blank=True, default=0, on_delete=django.db.models.deletion.CASCADE, to='AcadeMeData.course'),
 >>>>>>> b0cbf8c (fixes)
+=======
+            field=models.ForeignKey(blank=True, default=0, on_delete=django.db.models.deletion.CASCADE,
+                                    to='AcadeMeData.course'),
+>>>>>>> ce1a93b (flake8 fixes)
         ),
     ]
