@@ -1,19 +1,16 @@
 from pytest_django.asserts import assertTemplateUsed
 import pytest
-from AcadeMeData.models import University, Degree
 
 
 @pytest.mark.django_db
-def test_homepage_html(client, user_example):
-    all_universities = University.objects.all()
-    all_degrees = Degree.objects.all()
+def test_homepage_html(client, user_example, generate_all_degree_set, generate_all_university_set):
     client.force_login(user_example.user)
     response = client.get("")
     assertTemplateUsed(response, 'landing/homepage.html')
     assert response.context['navbar_links'] == {f"Welcome {user_example.user.username}": "#",
                                                 "Logout": "/logout"}
-    assert set(response.context['all_universities']) == set(all_universities)
-    assert set(response.context['all_degrees']) == set(all_degrees)
+    assert set(response.context['all_universities']) == generate_all_university_set
+    assert set(response.context['all_degrees']) == generate_all_degree_set
 
 
 @pytest.mark.django_db
