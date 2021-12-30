@@ -3,6 +3,18 @@ from AcadeMeData.models import University, Degree, Professor, User, Course
 
 
 @pytest.fixture
+def generate_all_university_set():
+    all_universities = University.objects.all()
+    return set(all_universities)
+
+
+@pytest.fixture
+def generate_all_degree_set():
+    all_degree = Degree.objects.all()
+    return set(all_degree)
+
+
+@pytest.fixture
 def generate_university(university_id=5, name='The Technion', location="Haifa",
                         description="Best University in Israel"):
     university = University(university_id=university_id, name=name, location=location,
