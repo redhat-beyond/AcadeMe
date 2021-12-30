@@ -151,62 +151,6 @@ class Professor(models.Model):
         return self.description
 
 
-class MessageBoards(models.Model):
-    id = models.IntegerField(primary_key=True)
-    courseName = models.TextField(max_length=30)
-
-    def __str__(self):
-        return self.id
-
-    @staticmethod
-    def create_msgboard(id, courseName):
-        msgboard = MessageBoards(id=id, courseName=courseName)
-        msgboard.save()
-        return msgboard
-
-    @staticmethod
-    def get_msgboard_by_id(id):
-        return MessageBoards.objects.get(id=id)
-
-
-class Messages(models.Model):
-    msgID = models.IntegerField(primary_key=True)
-    userID = models.ForeignKey(User, on_delete=models.CASCADE, default=0)
-    text = models.TextField(max_length=300)
-    msgDate = models.DateTimeField(default=timezone.now)
-
-    def get_msg(self):
-        return self.msgID
-
-    def create_message(id, user, text):
-        with transaction.atomic():
-            msg = Messages(msgID=id, userID=user, text=text)
-            msg.save()
-            return msg
-
-    @staticmethod
-    def get_msg_by_id(msgID):
-        return Messages.objects.get(msgID=msgID)
-
-
-class MessageTags(models.Model):
-    id = models.IntegerField(primary_key=True, default=0)
-    msg = models.ForeignKey(Messages, on_delete=models.CASCADE)
-    userID = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def create_msgtag(id, msg, userID):
-        with transaction.atomic():
-            tag = MessageTags(id=id, msg=msg, userID=userID)
-            tag.save()
-            return tag
-
-    def __str__(self):
-        return self.id
-
-    def get_msg_tag(id):
-        return MessageTags.objects.get(id=id)
-
-
 class Course(models.Model):
     course_id = models.IntegerField(primary_key=True, validators=[MinValueValidator(0)], default=0)
     name = models.CharField(max_length=100, unique=True)
@@ -247,3 +191,64 @@ class Course(models.Model):
         returns if course belongs to this degree in this university
         """
         return degree in self.degree.all() and university == self.university
+
+
+class MessageBoards(models.Model):
+    id = models.IntegerField(primary_key=True)
+    courseName = models.ForeignKey(Course, null=False, blank=True, on_delete=models.CASCADE, default=0)
+
+    def __str__(self):
+        return self.id
+
+    @staticmethod
+    def create_msgboard(id, courseName):
+        msgboard = MessageBoards(id=id, courseName=courseName)
+        msgboard.save()
+        return msgboard
+
+    @staticmethod
+    def get_msgboard_by_id(id):
+        return MessageBoards.objects.get(id=id)
+
+    @staticmethod
+    def get_msgboard_by_course(course):
+        return MessageBoards.objects.get(courseName=course)
+
+
+class Messages(models.Model):
+    msgID = models.IntegerField(primary_key=True)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE, default=0)
+    text = models.TextField(max_length=300)
+    msgDate = models.DateTimeField(default=timezone.now)
+    board = models.ForeignKey(MessageBoards, on_delete=models.CASCADE, default=1)
+
+    def get_msg(self):
+        return self.msgID
+
+    def create_message(id, user, text, board):
+        with transaction.atomic():
+            msg = Messages(msgID=id, userID=user, text=text, board=board)
+            msg.save()
+            return msg
+
+    @staticmethod
+    def get_msg_by_id(msgID):
+        return Messages.objects.get(msgID=msgID)
+
+
+class MessageTags(models.Model):
+    id = models.IntegerField(primary_key=True, default=0)
+    msg = models.ForeignKey(Messages, on_delete=models.CASCADE)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def create_msgtag(id, msg, userID):
+        with transaction.atomic():
+            tag = MessageTags(id=id, msg=msg, userID=userID)
+            tag.save()
+            return tag
+
+    def __str__(self):
+        return self.id
+
+    def get_msg_tag(id):
+        return MessageTags.objects.get(id=id)

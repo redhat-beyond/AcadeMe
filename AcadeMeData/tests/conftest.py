@@ -1,5 +1,5 @@
 import pytest
-from AcadeMeData.models import University, Degree, Professor, User, Course
+from AcadeMeData.models import MessageTags, Messages, University, Degree, Professor, User, MessageBoards, Course
 
 
 @pytest.fixture
@@ -58,3 +58,23 @@ def generate_course(generate_degree, generate_professor, generate_university, co
                                   description=description, professor=generate_professor, university=generate_university)
     course.save()
     return course
+
+
+@pytest.fixture
+def generate_msgboard(generate_course, id=1):
+    msgboard = MessageBoards(id=id, courseName=generate_course)
+    msgboard.save()
+    return msgboard
+
+
+@pytest.fixture
+def generate_message(generate_msgboard, user_example, msgID=9, text='Hello this is test message'):
+    message = Messages.create_message(msgID, user_example, text, generate_msgboard)
+    message.save()
+    return message
+
+
+@pytest.fixture
+def generate_msgtags(user_example, generate_message, id=1):
+    tag = MessageTags.create_msgtag(id, generate_message, user_example)
+    return tag
