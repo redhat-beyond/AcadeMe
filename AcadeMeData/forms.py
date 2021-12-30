@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from AcadeMeData.models import User, DjangoUser, UNIVERSITYCHOICES, DEGREECHOICES
+from AcadeMeData.models import Messages, User, DjangoUser, UNIVERSITYCHOICES, DEGREECHOICES
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -32,3 +32,9 @@ class UserRegistrationForm(UserCreationForm):
         user2 = User(user=user, university=self.cleaned_data['university'], degree=self.cleaned_data['degree'])
         user2.save()
         return user2
+
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Messages
+        fields = ('text', 'userID')
