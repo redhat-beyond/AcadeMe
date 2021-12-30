@@ -2,43 +2,46 @@
 {% load static %}
 {% block content %}
 <body>
-<div class="d-flex flex-column justify-content-center">
-    <div class="top-container align-items-center d-flex flex-column justify-content-center align-items-center">
-        <div class="mt-5 mb-3">
+   <div class="d-flex flex-column justify-content-center text-center">
+      <div class="top-container align-items-center d-flex flex-column justify-content-center align-items-center">
+         <div class="mt-5 mb-3">
             <h1 class="font-weight-bold">Welcome To</h1>
-        </div>
-        <div>
-            <img class="logo mb-5" src="{% static 'img/academe_logo.png' %}"/>
-        </div>
-
-    </div>
-</div>
-<div class="d-flex flex-row bottom-container justify-content-center">
-    <div class="flex-column m-5">
-        <h3 class="my-2">Choose University</h3>
-        <div>
-            <select aria-label="choose-university" id="selectContentuniversity">
-                <option selected>Choose University</option>
-                {% for university in all_universities %}
-                <option value="1">{{ university.name }}</option>
-                {% endfor %}
-
-            </select>
-        </div>
-    </div>
-    <div class="flex-column m-5">
-        <h3 class="my-2">Choose Degree</h3>
-        <div>
-            <select aria-label="choose-degree" id="selectContentdegree">
-                <option selected>Choose Degree</option>
-                {% for degree in all_degrees %}
-                <option value="1">{{ degree.name }}</option>
-                {% endfor %}
-            </select>
-        </div>
-    </div>
-</div>
-</div>
+         </div>
+         <div>
+            <img class="logo mb-5" src="{% static 'img/academe_logo.png' %}" />
+         </div>
+      </div>
+   </div>
+   {% if user.is_authenticated %}
+   <div class="d-flex flex-row bottom-container justify-content-center text-center">
+      <form action="course-list/" method="post" id="select-form">
+        {% csrf_token %}
+         <div class="mx-5 mt-5 mb-4">
+            <h3 class="my-2">Choose University</h3>
+            <div>
+               <select aria-label="choose-university" id="selectUniversity" name="selectUniversity">
+                  <option disabled selected value> -- Choose University -- </option>
+                  {% for university in all_universities %}
+                  <option value="{{ university }}">{{ university.name }}</option>
+                  {% endfor %}
+               </select>
+            </div>
+         </div>
+         <div class="mx-5 mt-3 mb-5">
+            <h3 class="my-2">Choose Degree</h3>
+            <div>
+               <select aria-label="choose-degree" id="selectDegree" name="selectDegree">
+                  <option isabled selected value> -- Choose Degree -- </option>
+                  {% for degree in all_degrees %}
+                  <option value="{{ degree }}">{{ degree.name }}</option>
+                  {% endfor %}
+               </select>
+            </div>
+         </div>
+         <div class="mb-3"><input class="btn btn-primary" type="submit" value="Submit!"/></div>
+      </form>
+   </div>
+   {% endif %}
+   </div>
 </body>
 {% endblock %}
-</html>
