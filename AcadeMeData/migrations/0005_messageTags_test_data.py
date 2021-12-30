@@ -1,5 +1,7 @@
 from django.db import migrations, transaction
 
+from AcadeMeData.models import MessageBoards
+
 
 class Migration(migrations.Migration):
     dependencies = [
@@ -11,9 +13,15 @@ class Migration(migrations.Migration):
     ]
 
     def generate_msgtagsdata(apps, schema_editor):
-        from AcadeMeData.models import User, Messages, MessageTags
+        from AcadeMeData.models import User, Messages, MessageTags, University, Professor, Course
         userrnd1 = User.create_user('u', 'u@gmail.com', 'pas', 'BS', 'CS')
-        msgID = Messages.create_message(1, userrnd1, 'Hello this is test message')
+        university = University(university_id=1, name='Reichman University', location='Herzliya',
+                                description='Very nice university')
+        professor = Professor(professor_id=3, name="Shimon Shocken", university=university, description="Nice guy",
+                              rate=1)
+        course = Course(1, 'Open Source Code Workshop', False, 'Build a Django project from the grounds up!', professor)
+        board = MessageBoards(id=1, courseName=course)
+        msgID = Messages.create_message(1, userrnd1, 'Hello this is test message', board)
         test_data = [
             (1, msgID, userrnd1),
         ]

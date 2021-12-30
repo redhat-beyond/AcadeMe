@@ -2,13 +2,6 @@ import pytest
 from AcadeMeData.models import MessageBoards
 
 
-@pytest.fixture
-def generate_msgboard(id=1):
-    msgboard = MessageBoards(id=id, courseName="Linear Algebra")
-    msgboard.save()
-    return msgboard
-
-
 @pytest.mark.django_db
 class TestMessageBoardModel:
     def test_create_msgboard(self, generate_msgboard):
