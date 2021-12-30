@@ -175,6 +175,9 @@ class Course(models.Model):
         course.save()
         return course
 
+    def __str__(self):
+        return self.name
+
     @staticmethod
     def get_course_by_name(name):
         """
