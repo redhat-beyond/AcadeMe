@@ -1,4 +1,3 @@
-from django.contrib import messages
 import pytest
 from AcadeMeData.forms import MessageForm
 from django.contrib.messages import get_messages
