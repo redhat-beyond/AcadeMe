@@ -20,3 +20,16 @@ def test_contactus_html(client, user_example):
     assertTemplateUsed(response, 'landing/contact_us.html')
     assert response.context['navbar_links'] == {f"Welcome {user_example.user.username}": "#",
                                                 "Logout": "/logout"}
+
+
+@pytest.mark.django_db
+def test_courselist_html(client, user_example, generate_all_courses_set):
+    client.force_login(user_example.user)
+    response = client.post("/course-list/",
+                           {'selectUniversity': 'Reichman University', 'selectDegree': 'Computer Science'})
+    assertTemplateUsed(response, 'landing/course-list-page.html')
+    assert response.context['navbar_links'] == {f"Welcome {user_example.user.username}": "#",
+                                                "Logout": "/logout"}
+    assert response.context['seluniversity'] == 'Reichman University'
+    assert response.context['seldegree'] == 'Computer Science'
+    assert set(response.context['all_courses']) == generate_all_courses_set
