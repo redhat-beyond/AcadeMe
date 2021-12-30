@@ -27,6 +27,7 @@ def courseList(request):
 
 
 def course(request):
+    selectedCourse = None
     context = {}
     goToCourse = request.POST.get('goTo', None)
     context['goToCourse'] = goToCourse
