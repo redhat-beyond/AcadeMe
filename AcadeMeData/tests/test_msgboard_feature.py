@@ -1,3 +1,4 @@
+from django.contrib import messages
 import pytest
 from AcadeMeData.forms import MessageForm
 from django.contrib.messages import get_messages
@@ -42,3 +43,5 @@ def test_msgboard_feature(client, user_example, generate_msgboard):
     form2 = response.context["form"]
     assert isinstance(form2, MessageForm)
     assert response.status_code == 200
+    messages = response.context["messages"]
+    assert len(messages) > 0
