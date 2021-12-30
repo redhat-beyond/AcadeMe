@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from AcadeMeData.models import University, Degree
+from AcadeMeData.models import Course, University, Degree
 
 
 def app_layout(request):
@@ -33,3 +33,19 @@ def add_navbar_links_to_context(request, context):
         context['navbar_links'] = {f"Welcome {request.user.username}": "#", "Logout": "/logout"}
     else:
         context['navbar_links'] = {"Login": "/login", "Register": "/register"}
+
+
+def courseList(request):
+    context = {}
+    seluniversity = request.POST.get('selectUniversity', None)
+    seldegree = request.POST.get('selectDegree', None)
+    context['seluniversity'] = seluniversity
+    context['seldegree'] = seldegree
+    all_courses = Course.objects.all()
+    context['all_courses'] = all_courses
+    add_navbar_links_to_context(request, context)
+    return render(request, 'landing/course-list-page.html', context)
+
+
+def course(request):
+    return render(request, 'landing/course-page.html')
