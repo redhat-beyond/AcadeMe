@@ -177,7 +177,7 @@ class Course(models.Model):
 
     def __str__(self):
         return self.name
-    
+
     @staticmethod
     def get_course_by_name(name):
         """
