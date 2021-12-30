@@ -7,7 +7,6 @@ def app_layout(request):
 
 
 def homePage(request):
-    print(request.user)
     all_universities = University.objects.all()
     all_degrees = Degree.objects.all()
     context = {'all_universities': all_universities, 'all_degrees': all_degrees}
