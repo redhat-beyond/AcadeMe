@@ -1,10 +1,7 @@
 import pytest
-from AcadeMeData.models import User
 from AcadeMeData.forms import MessageForm
 from django.contrib.messages import get_messages
-from django import urls
 from django.contrib import auth
-from AcadeMeData.models import Messages, MessageBoards
 
 
 @pytest.mark.django_db
@@ -45,4 +42,3 @@ def test_msgboard_feature(client, user_example, generate_msgboard):
     form2 = response.context["form"]
     assert isinstance(form2, MessageForm)
     assert response.status_code == 200
-    

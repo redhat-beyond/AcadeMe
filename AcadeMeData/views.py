@@ -30,6 +30,8 @@ class SearchResultsView(ListView):
         object_list = Course.objects.filter(name__icontains=query)
 
         return object_list
+
+
 @login_required(login_url="/login/")
 def msgboard(request):
     messages = Messages.objects.order_by('-msgDate')
