@@ -48,4 +48,13 @@ def courseList(request):
 
 
 def course(request):
-    return render(request, 'landing/course-page.html')
+    selectedCourse = None
+    context = {}
+    goToCourse = request.POST.get('goTo', None)
+    all_courses = Course.objects.all()
+    for course in all_courses:
+        if course.name == goToCourse:
+            selectedCourse = Course.objects.get(name=goToCourse)
+    context['selectedCourse'] = selectedCourse
+    add_navbar_links_to_context(request, context)
+    return render(request, 'landing/course-page.html', context)
