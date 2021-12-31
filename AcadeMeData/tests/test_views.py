@@ -33,8 +33,8 @@ def test_courselist_html(client, user_example, generate_all_courses_set):
     assert response.context['seluniversity'] == 'Reichman University'
     assert response.context['seldegree'] == 'Computer Science'
     assert set(response.context['all_courses']) == generate_all_courses_set
-    
-    
+
+
 @pytest.mark.django_db
 def test_course_html(client, user_example):
     client.force_login(user_example.user)
@@ -43,4 +43,3 @@ def test_course_html(client, user_example):
     assert response.context['navbar_links'] == {f"Welcome {user_example.user.username}": "#",
                                                 "Logout": "/logout"}
     assert response.context['selectedCourse'].name == 'Open Source Code Workshop'
-
