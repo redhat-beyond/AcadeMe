@@ -29,4 +29,5 @@ urlpatterns = [
          user_views.SearchResultsView.as_view(template_name='../templates/search/search.html'), name='search'),
     path('course-page/', views.course, name='course-page'),
     path('course-list/', views.courseList, name='course-list'),
+    path('msgboard/', user_views.msgboard, name='msgboard')
 ]
