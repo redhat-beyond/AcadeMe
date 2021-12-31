@@ -1,0 +1,34 @@
+{% extends 'app_layout.html' %} {% load static %} {% block content %}
+<body>
+  <h1>{{course.name}} forum</h1>
+
+  {% for message in messages %}
+  <div class="container mb-4">
+    <p class="align-items-center my-3 rounded box-shadow"></p>
+    <img
+        class="mr-2 float-left"
+        src="https://bootdey.com/img/Content/avatar/avatar7.png"
+        alt=""
+        width="48"
+        height="48"
+      />
+    <p class="media-body pb-4 mb-0 small border-bottom border-white">
+      
+      By {{message.userID.user.username}} at {{message.msgDate}}
+    </p>
+    </p>
+    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+      {{ message.text }}
+    </p>
+  </div>
+
+  {% endfor %}
+</body>
+<div class="newfrm">
+  <form method="POST">
+    {% csrf_token %} {{ form.text }}
+    <p hidden>{{form.userID}}</p>
+    <input type="submit" value="Post" />
+  </form>
+</div>
+{% endblock %}
