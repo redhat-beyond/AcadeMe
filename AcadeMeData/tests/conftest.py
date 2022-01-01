@@ -15,6 +15,12 @@ def generate_all_degree_set():
 
 
 @pytest.fixture
+def generate_all_courses_set():
+    all_courses = Course.objects.all()
+    return set(all_courses)
+
+
+@pytest.fixture
 def generate_university(university_id=5, name='The Technion', location="Haifa",
                         description="Best University in Israel"):
     university = University(university_id=university_id, name=name, location=location,

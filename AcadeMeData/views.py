@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegistrationForm, MessageForm
-from .models import Messages, Course
+from .models import MessageBoards, Messages, Course
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 
@@ -34,7 +34,9 @@ class SearchResultsView(ListView):
 
 @login_required(login_url="/login/")
 def msgboard(request):
-    messages = Messages.objects.order_by('-msgDate')
+    course_name = request.GET.get('course_name')
+    board = MessageBoards.objects.get(courseName = course_name)
+    messages = Messages.objects.filter(board=board)
     form = MessageForm(initial={'userID': request.user.user})
     if request.method == "POST":
         form = MessageForm(request.POST)
@@ -48,4 +50,5 @@ def msgboard(request):
     return render(request, '../templates/msgboard/board.html', {
         'messages': messages,
         'form': form,
+        'course_name': course_name,
     })

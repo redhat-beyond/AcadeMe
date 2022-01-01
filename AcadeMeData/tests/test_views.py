@@ -23,6 +23,19 @@ def test_contactus_html(client, user_example):
 
 
 @pytest.mark.django_db
+def test_courselist_html(client, user_example, generate_all_courses_set):
+    client.force_login(user_example.user)
+    response = client.post("/course-list/",
+                           {'selectUniversity': 'Reichman University', 'selectDegree': 'Computer Science'})
+    assertTemplateUsed(response, 'landing/course-list-page.html')
+    assert response.context['navbar_links'] == {f"Welcome {user_example.user.username}": "#",
+                                                "Logout": "/logout"}
+    assert response.context['seluniversity'] == 'Reichman University'
+    assert response.context['seldegree'] == 'Computer Science'
+    assert set(response.context['all_courses']) == generate_all_courses_set
+
+
+@pytest.mark.django_db
 def test_course_html(client, user_example):
     client.force_login(user_example.user)
     response = client.post("/course-page/", {'goTo': "Open Source Code Workshop"})
