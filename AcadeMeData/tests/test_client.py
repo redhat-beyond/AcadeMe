@@ -14,6 +14,12 @@ def test_contactus(client):
 
 
 @pytest.mark.django_db
+def test_course_list(client):
+    response = client.get('/course-list/')
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
 def test_course(client):
     response = client.get('/course-page/')
     assert response.status_code == 200
