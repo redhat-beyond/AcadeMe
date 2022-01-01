@@ -29,7 +29,10 @@
     {% csrf_token %} {{ form.text }}
     <p hidden>{{form.userID}}</p>
     <p></p>
-    <input type="submit" value="Post" class="btn btn-primary"/>
+    <input type="submit" value="{{course_name}}" name="courseName" class="btn btn-primary">
+  
+  </input>
+
   </form>
 </div>
 {% endblock %}

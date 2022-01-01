@@ -200,9 +200,6 @@ class MessageBoards(models.Model):
     id = models.IntegerField(primary_key=True)
     courseName = models.ForeignKey(Course, null=False, blank=True, on_delete=models.CASCADE, default=0)
 
-    def __str__(self):
-        return self.id
-
     @staticmethod
     def create_msgboard(id, courseName):
         msgboard = MessageBoards(id=id, courseName=courseName)

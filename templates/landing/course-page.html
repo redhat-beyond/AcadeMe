@@ -45,6 +45,9 @@
         <li class="h5 mt-3 text-capitalize">
           <strong><u>Course Proffesor:</u></strong>   {{ selectedCourse.professor }}
         </li>
+        <li>
+          <strong><u>Professor Description:</u></strong>
+          {{ selectedCourse.professor.description }}</li>
         {% if selectedCourse.description %}
         <li class="h5 mt-3">
           <strong><u>Course Description:</u></strong>   {{ selectedCourse.description }}
@@ -56,7 +59,7 @@
     </div>
     <div class="mt-4 d-flex flex-column">
       <h4 class="my-3">Conncet To Message Board!</h4>
-      <a class="btn btn-primary" href="/msgboard/?course_name={{  selectedCourse.name }}">{{ selectedCourse.name }}</a>
+      <a class="btn btn-primary" href="/msgboard/?course_name={{  selectedCourse }}">{{ selectedCourse }}</a>
     </div>
     
   </div>
