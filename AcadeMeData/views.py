@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegistrationForm, MessageForm
-from .models import Messages, Course
+from .models import MessageBoards, Messages, Course
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
+from AcadeMe import views
 
 
 def register(request):
@@ -34,18 +35,26 @@ class SearchResultsView(ListView):
 
 @login_required(login_url="/login/")
 def msgboard(request):
-    messages = Messages.objects.order_by('-msgDate')
+    course_id = request.GET.get('course_id')
+    print(course_id)
+    course = Course.get_course_by_id(course_id)
+    board = MessageBoards.get_msgboard_by_course(course)
+    messages = Messages.objects.filter(board=board)
     form = MessageForm(initial={'userID': request.user.user})
+    context = {'messages': messages,
+               'form': form,
+               'course_id': course_id,
+               'course_name': course.name
+               }
+    views.add_navbar_links_to_context(request, context)
     if request.method == "POST":
         form = MessageForm(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.userID = request.user.user
+            instance.board = board
             instance.save()
-            return redirect('msgboard')
+            return render(request, '../templates/msgboard/board.html', context)
     else:
         form = MessageForm()
-    return render(request, '../templates/msgboard/board.html', {
-        'messages': messages,
-        'form': form,
-    })
+    return render(request, '../templates/msgboard/board.html', context)

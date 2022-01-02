@@ -195,13 +195,21 @@ class Course(models.Model):
         """
         return degree in self.degree.all() and university == self.university
 
+    @staticmethod
+    def get_course_by_id(id):
+        """
+        Gets us the Course object with input 'id' as its id.
+        """
+        try:
+            course = Course.objects.get(course_id=id)
+            return course
+        except Course.DoesNotExist:
+            return None
+
 
 class MessageBoards(models.Model):
     id = models.IntegerField(primary_key=True)
     courseName = models.ForeignKey(Course, null=False, blank=True, on_delete=models.CASCADE, default=0)
-
-    def __str__(self):
-        return self.id
 
     @staticmethod
     def create_msgboard(id, courseName):
