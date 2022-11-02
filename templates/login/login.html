@@ -16,8 +16,12 @@
     </div>
 
     <form action="" method="POST">
-      {% csrf_token %} {% for field in form %} {{ field }} {% endfor %}
-
+      {% csrf_token %}
+      {% for field in form %}
+        {{ field }}
+        <br>
+      {% endfor %}
+      
       <input type="submit" class="fadeIn fourth mt-2 mb-2" value="Log In" />
     </form>
 
@@ -25,8 +29,8 @@
       <a class="underlineHover" href="#">Forgot Password?</a>
       <br />
       <a
-        >Not an AcadeMe user? Register
-        <a class="underlineHover" href="{% url 'register' %}"> - HERE</a></a
+        >Not an AcadeMe user? &nbsp
+        <a class="underlineHover" href="{% url 'register' %}">Register</a></a
       >
     </div>
   </div>
